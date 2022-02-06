@@ -1,7 +1,7 @@
 import React from "react";
 
 const App = () => {
-  return <div>Recipe Hub</div>;
+  return <h1 data-cy="title">Recipe Hub</h1>;
 };
 
 export default App;
