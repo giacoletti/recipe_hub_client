@@ -1,0 +1,32 @@
+version: v1.0
+name: Test MyApp
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Test
+    task:
+      jobs:
+        - name: Test
+          commands:
+            - sem-version node 16.13.2
+            - checkout
+            - 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
+            - chmod +x ./cc-test-reporter
+            - ./cc-test-reporter before-build
+            - yarn install
+            - 'yarn cypress:ci'
+      env_vars:
+        - name: CC_TEST_REPORTER_ID
+          value: 8cd2090cab2e04a5e988ea1cf771b64996dfd034a4563a756f1a2a9ada1c68d8
+      epilogue:
+        always:
+          commands:
+            - ./cc-test-reporter format-coverage -t lcov
+        on_pass:
+          commands:
+            - ./cc-test-reporter after-build --exit-code 0
+        on_fail:
+          commands:
+            - ./cc-test-reporter after-build --exit-code 1
