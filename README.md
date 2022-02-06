@@ -1,1 +1,1 @@
-# recipe_hub_client
+# Recipe Hub (client)
