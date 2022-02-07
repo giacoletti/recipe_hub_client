@@ -2,8 +2,8 @@
 describe("Visitor can visit the home page.", () => {
   before(() => {
     cy.intercept("GET", "**/api/recipes", {
-      fixture: "recipeIndexResponse.json",
-    }).as("Recipes.index");
+        fixture: "recipeIndexResponse.json"
+      }).as("Recipes.index");
     cy.visit("/");
   });
 
@@ -12,7 +12,6 @@ describe("Visitor can visit the home page.", () => {
   });
 
   it("is expected to see a collection of recipes", () => {
-    cy.get("[data-cy=recipes-list]").children().should("have.length", 3);
+    cy.get("[data-cy=recipes-list]").children().should("have.length", 7);
   });
-
 });

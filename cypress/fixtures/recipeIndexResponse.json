@@ -1,30 +1,53 @@
 {
-  "products": [
+  "recipes": [
     {
-      "id": 1,
-      "name": "Pizza",
-      "owner": "Giovanni Lacoletti",
-      "ingredient":{"egg": 2, "flour": "200g", "salami": "100g"},
-      "Description": "bake the bread, then put everything on top and put it in the oven for 15 minutes",
-      "created_at": "2021-12-07",
-      "updated_at": "2021-12-07"
+      "id": 12,
+      "title": "Fried rice with kimchi",
+      "instructions": "Mix everything",
+      "created_at": "2022-02-07T10:35:20.683Z",
+      "updated_at": "2022-02-07T10:35:20.683Z"
     },
     {
-      "id": 2,
-      "name": "Carbonara",
-      "owner": "Mathias Ljungholm",
-      "ingredient":{"egg": 2, "Bacon": "200g", "Cream": "200g", "pasta": "250g"},
-      "Description": "Mix everything and boil for 10 minutes",
-      "created_at": "2021-12-07",
-      "updated_at": "2021-12-07"
+      "id": 11,
+      "title": "Pasta bolognese",
+      "instructions": "Mix everything",
+      "created_at": "2022-02-07T10:35:20.683Z",
+      "updated_at": "2022-02-07T10:35:20.683Z"
     },
     {
-      "id": 3,
-      "name": "Risotto",
-      "owner": "Elvita Kalvāne",      "ingredient":{"Rice": "300g", "Cream": "200g", "Tomato-Sauce": "100g"},
-      "Description": "Mix everything and boil for 10 minutes",
-      "created_at": "2021-12-07",
-      "updated_at": "2021-12-07"
+      "id": 10,
+      "title": "Flygande Jakob",
+      "instructions": "Mix everything",
+      "created_at": "2022-02-07T10:35:20.683Z",
+      "updated_at": "2022-02-07T10:35:20.683Z"
+    },
+    {
+      "id": 9,
+      "title": "Cheese Cake",
+      "instructions": "Mix everything",
+      "created_at": "2022-02-07T10:35:20.683Z",
+      "updated_at": "2022-02-07T10:35:20.683Z"
+    },
+    {
+      "id": 8,
+      "title": "Cheese Cake",
+      "instructions": "Mix everything",
+      "created_at": "2022-02-07T10:35:20.683Z",
+      "updated_at": "2022-02-07T10:35:20.683Z"
+    },
+    {
+      "id": 7,
+      "title": "Cheese Cake",
+      "instructions": "Mix everything",
+      "created_at": "2022-02-07T10:35:20.683Z",
+      "updated_at": "2022-02-07T10:35:20.683Z"
+    },
+    {
+      "id": 6,
+      "title": "Cheese Cake",
+      "instructions": "Mix everything",
+      "created_at": "2022-02-07T10:35:20.683Z",
+      "updated_at": "2022-02-07T10:35:20.683Z"
     }
   ]
 }
