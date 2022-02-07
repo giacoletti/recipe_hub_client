@@ -15,7 +15,7 @@ const RecipesMainView = () => {
 
   const recipesList = recipes.map((recipe) => {
     return (
-      <Grid item key={recipe.id}>
+      <Grid item key={recipe.id} data-cy="recipes-list">
         <RecipeCard recipe={recipe} />
       </Grid>
     );

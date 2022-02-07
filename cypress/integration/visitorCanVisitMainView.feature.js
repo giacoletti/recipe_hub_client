@@ -14,4 +14,6 @@ describe("Visitor can visit the home page.", () => {
   it("is expected to see a collection of recipes", () => {
     cy.get("[data-cy=recipes-list]").children().should("have.length", 7);
   });
+
+  
 });
