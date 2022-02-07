@@ -13,7 +13,8 @@ const RecipesMainView = () => {
     }
   };
 
-  const recipesList = recipes.map((recipe) => {
+  const recipesList = recipes.map((recipe, index) => {
+    recipe.index = index + 1;
     return (
       <Grid item key={recipe.id} data-cy="recipes-list">
         <RecipeCard recipe={recipe} />
