@@ -2,6 +2,7 @@ import { Box, Typography, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Recipes from "../modules/Recipes";
+import Divider from "@mui/material/Divider";
 
 const RecipeFullView = () => {
   const [recipe, setRecipe] = useState({});
@@ -21,9 +22,11 @@ const RecipeFullView = () => {
         <Typography gutterBottom variant="h5" data-cy="recipe-title">
           {recipe.title}
         </Typography>
+        <Divider />
         <Typography gutterBottom variant="h5" data-cy="recipe-instructions">
           {recipe.instructions}
         </Typography>
+        <Divider />
         <Typography gutterBottom variant="h5" data-cy="recipe-created_at">
           {recipe.created_at}
         </Typography>
