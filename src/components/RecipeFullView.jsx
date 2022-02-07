@@ -49,8 +49,7 @@ const RecipeFullView = () => {
           align="right"
           data-cy={`ingredient-quantity-${ingredient.index}`}
         >
-          {ingredient.amount}
-          {ingredient.unit}
+          {`${ingredient.amount} ${ingredient.unit}`}
         </TableCell>
       </TableRow>
     );
@@ -71,8 +70,8 @@ const RecipeFullView = () => {
             {recipe.title}
           </Typography>
         </Grid>
-        <Grid item>
-          <Table>
+        <Grid item xs={12}>
+          <Table sx={{ width: 230 }}>
             <TableBody data-cy="ingredients-list">{ingredientsList}</TableBody>
           </Table>
         </Grid>

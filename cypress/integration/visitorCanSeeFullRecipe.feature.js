@@ -36,7 +36,7 @@ describe("A visitor, by clicking a recipe card in the main view", () => {
   it("is expected to display recipe ingredients", () => {
     cy.get("[data-cy=ingredients-list]").within(() => {
       cy.get("[data-cy=ingredient-name-1]").should("contain.text", "sugar");
-      cy.get("[data-cy=ingredient-quantity-1]").should("contain.text", "100grams");
+      cy.get("[data-cy=ingredient-quantity-1]").should("contain.text", "100 grams");
     });
   });
 
