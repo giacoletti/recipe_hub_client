@@ -23,4 +23,17 @@ describe("A visitor, by clicking a recipe card in the main view", () => {
     cy.get("[data-cy=recipe-title]")
       .should("contain.text", "Fried rice with kimchi");
   });
+
+  it("is expected to display recipe instructions", () => {
+    cy.get("[data-cy=recipe-instructions]")
+      .should(
+        "contain.text", 
+        "1. On medium high heat preheat a pan/wok and once heated, add the cooking oil and spread it well with a spatula."
+      );
+  });
+
+  it("is expected to display recipe creation date", () => {
+    cy.get("[data-cy=recipe-created_at]")
+      .should("contain.text", "February 07, 2022 16:38");
+  });
 });

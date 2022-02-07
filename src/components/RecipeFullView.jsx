@@ -1,8 +1,14 @@
-import { Box, Typography, Grid } from "@mui/material";
+import { styled, Typography, Grid, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Recipes from "../modules/Recipes";
-import Divider from "@mui/material/Divider";
+
+const Img = styled("img")({
+  margin: "auto",
+  display: "block",
+  maxWidth: "100%",
+  maxHeight: "100%"
+});
 
 const RecipeFullView = () => {
   const [recipe, setRecipe] = useState({});
@@ -17,25 +23,42 @@ const RecipeFullView = () => {
   }, []);
 
   return (
-    <Box sx={{ m: 10 }}>
-      <Grid>
-        <Typography gutterBottom variant="h5" data-cy="recipe-title">
-          {recipe.title}
-        </Typography>
-        <Divider />
-        <Typography gutterBottom variant="h5" data-cy="recipe-instructions">
-          {recipe.instructions}
-        </Typography>
-        <Divider />
-        <Typography gutterBottom variant="h5" data-cy="recipe-created_at">
-          {recipe.created_at}
-        </Typography>
+    <Paper
+      sx={{ p: 2, margin: "auto", maxWidth: 500, flexGrow: 1, boxShadow: 3 }}
+    >
+      <Grid container spacing={2}>
+        <Grid item>
+          <Img
+            src="https://mui.com/static/images/cards/paella.jpg"
+            loading="lazy"
+          />
+        </Grid>
+        <Grid item>
+          <Typography gutterBottom variant="h5" data-cy="recipe-title">
+            {recipe.title}
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography
+            gutterBottom
+            variant="body1"
+            data-cy="recipe-instructions"
+          >
+            {recipe.instructions}
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography
+            data-cy="recipe-created_at"
+            variant="caption"
+            display="block"
+            gutterBottom
+          >
+            {recipe.created_at}
+          </Typography>
+        </Grid>
       </Grid>
-      <img
-        src="https://mui.com/static/images/cards/paella.jpg"
-        loading="lazy"
-      />
-    </Box>
+    </Paper>
   );
 };
 
