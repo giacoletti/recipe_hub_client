@@ -16,7 +16,7 @@ describe("A visitor, by clicking a recipe card in the main view", () => {
   });
 
   it("is expected to display recipe id in the url", () => {
-    cy.url().should("contain", "/api/recipes/12");
+    cy.url().should("contain", "/recipes/12");
   });
 
   it("is expected to display recipe title", () => {
