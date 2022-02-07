@@ -1,0 +1,30 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Pizza",
+      "owner": "Giovanni Lacoletti",
+      "ingredient":{"egg": 2, "flour": "200g", "salami": "100g"},
+      "Description": "bake the bread, then put everything on top and put it in the oven for 15 minutes",
+      "created_at": "2021-12-07",
+      "updated_at": "2021-12-07"
+    },
+    {
+      "id": 2,
+      "name": "Carbonara",
+      "owner": "Mathias Ljungholm",
+      "ingredient":{"egg": 2, "Bacon": "200g", "Cream": "200g", "pasta": "250g"},
+      "Description": "Mix everything and boil for 10 minutes",
+      "created_at": "2021-12-07",
+      "updated_at": "2021-12-07"
+    },
+    {
+      "id": 3,
+      "name": "Risotto",
+      "owner": "Elvita Kalvāne",      "ingredient":{"Rice": "300g", "Cream": "200g", "Tomato-Sauce": "100g"},
+      "Description": "Mix everything and boil for 10 minutes",
+      "created_at": "2021-12-07",
+      "updated_at": "2021-12-07"
+    }
+  ]
+}
