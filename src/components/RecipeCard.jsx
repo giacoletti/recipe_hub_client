@@ -11,7 +11,7 @@ import {
 
 const RecipeCard = ({ recipe }) => {
   return (
-    <Card sx={{ maxWidth: 345, boxShadow: 3 }}>
+    <Card sx={{ maxWidth: 345, boxShadow: 3 }} data-cy={`recipe-card-${recipe.index}`}>
       <CardHeader
         data-cy={`recipe-header-${recipe.index}`}
         avatar={<Avatar sx={{ bgcolor: colors.red[500] }}>R</Avatar>}
