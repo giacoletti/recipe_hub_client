@@ -14,15 +14,16 @@ describe("User", () => {
     cy.visit("/");
     cy.get("[data-cy=sign-up-btn]").click();
     cy.get("[data-cy=user-name-input]").type("john");
-    cy.get("[data-cy=email-field]").type("johnskoglung@test.com");
-    cy.get("[data-cy=password-field]").type("password");
+    cy.get("[data-cy=email-input]").type("johnskoglung@test.com");
+    cy.get("[data-cy=password-input]").type("password");
     cy.get("[data-cy=conf-password-input]").type("password");
+    cy.get("[data-cy=register-button]").click();
   });
 
   it("is expected to dispaly registration success message", () => {
     cy.get("[data-cy=flash-message]").should(
       "You successfully created an account"
-    );
+      );
   });
 
   it("is expected to be redirected to login page", () => {
