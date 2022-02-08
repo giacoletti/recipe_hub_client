@@ -23,8 +23,8 @@ const RegistrationForm = () => {
       signupForm.conf_password
     );
     if (response.status === "success") {
-      setMessage(response.status);
-      setTimeout(() => navigate("/login"), 2500);
+      setMessage("You successfully created an account");
+      setTimeout(() => navigate("/login"), 4000);
     } else {
       setMessage(response);
       setTimeout(() => setMessage(""), 4000);
