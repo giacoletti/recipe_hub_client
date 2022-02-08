@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography, CssBaseline } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
@@ -14,6 +14,7 @@ const NavigationBar = () => {
           alignItems: "center"
         }}
       >
+        <CssBaseline />
         <Toolbar>
           <Typography
             variant="h2"
