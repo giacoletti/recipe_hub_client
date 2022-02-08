@@ -17,22 +17,22 @@ const NavigationBar = () => {
         position="static"
         style={{
           background: "#7a1e77",
-          marginBottom: "20px",
-          alignItems: "center"
+          marginBottom: "20px"
         }}
       >
         <CssBaseline />
         <Toolbar>
           <Typography
+            sx={{ flexGrow: 1, paddingLeft: "300px" }}
             variant="h2"
             component="div"
-            sx={{ flexGrow: 1 }}
             data-cy="title"
             onClick={() => navigate("/")}
           >
             Recipe Hub
           </Typography>
           <Button
+            sx={{ alignSelf: "-right" }}
             color="inherit"
             data-cy="sign-up-btn"
             onClick={() => navigate("/registration-form")}
