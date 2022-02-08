@@ -6,7 +6,14 @@ const NavigationBar = () => {
   const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{
+          background: "#7a1e77",
+          marginBottom: "20px",
+          alignItems: "center"
+        }}
+      >
         <Toolbar>
           <Typography
             variant="h2"
