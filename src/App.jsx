@@ -7,7 +7,7 @@ import NavigationBar from "./components/NavigationBar";
 
 const App = () => {
   return (
-    <React.StrictMode>
+    <React.Fragment>
       <NavigationBar />
       <Container>
         <Routes>
@@ -15,7 +15,7 @@ const App = () => {
           <Route path="recipes/:id" element={<RecipeFullView />} />
         </Routes>
       </Container>
-    </React.StrictMode>
+    </React.Fragment>
   );
 };
 
