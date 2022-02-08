@@ -7,13 +7,15 @@ import NavigationBar from "./components/NavigationBar";
 
 const App = () => {
   return (
-    <Container>
+    <React.StrictMode>
       <NavigationBar />
-      <Routes>
-        <Route path="/" element={<RecipesMainView />} />
-        <Route path="recipes/:id" element={<RecipeFullView />} />
-      </Routes>
-    </Container>
+      <Container>
+        <Routes>
+          <Route path="/" element={<RecipesMainView />} />
+          <Route path="recipes/:id" element={<RecipeFullView />} />
+        </Routes>
+      </Container>
+    </React.StrictMode>
   );
 };
 
