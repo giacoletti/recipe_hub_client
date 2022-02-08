@@ -15,7 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<RecipesMainView />} />
           <Route path="recipes/:id" element={<RecipeFullView />} />
-          <Route path="registration-form" element={<RegistrationForm />} />
+          <Route path="signup" element={<RegistrationForm />} />
           <Route path="login" element={<LoginPage />} />
         </Routes>
       </Container>

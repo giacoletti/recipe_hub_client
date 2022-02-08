@@ -1,9 +1,9 @@
-import auth from "./auth";
+import Auth from "./auth";
 
 const Authentication = {
   async signUp(name, email, password, password_confirmation) {
     try {
-      const { data } = await auth.signUp({
+      const { data } = await Auth.signUp({
         name: name,
         email: email,
         password: password,

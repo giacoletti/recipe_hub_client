@@ -6,7 +6,7 @@ describe("User", () => {
         fixture: "recipesIndexResponse.json"
       });
       cy.intercept("POST", "/api/auth", {
-        fixture: "registration_successfull_response.json"
+        fixture: "registration_successful_response.json"
       });
       cy.visit("/");
       cy.get("[data-cy=sign-up-btn]").click();

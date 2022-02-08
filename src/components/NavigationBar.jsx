@@ -35,7 +35,7 @@ const NavigationBar = () => {
             sx={{ alignSelf: "-right" }}
             color="inherit"
             data-cy="sign-up-btn"
-            onClick={() => navigate("/registration-form")}
+            onClick={() => navigate("/signup")}
           >
             Sign Up
           </Button>
