@@ -1,5 +1,12 @@
 import React from "react";
-import { AppBar, Box, Toolbar, Typography, CssBaseline } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  CssBaseline,
+  Button
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
@@ -25,6 +32,13 @@ const NavigationBar = () => {
           >
             Recipe Hub
           </Typography>
+          <Button
+            color="inherit"
+            data-cy="sign-up-btn"
+            onClick={() => navigate("/registration-form")}
+          >
+            Sign Up
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
