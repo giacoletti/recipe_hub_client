@@ -1,3 +1,3 @@
-const initialState = {};
+const initialState = { showLogin: false };
 
 export default initialState;

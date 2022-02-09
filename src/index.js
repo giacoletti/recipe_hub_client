@@ -7,6 +7,10 @@ import configureStore from "./state/store/configureStore";
 
 const store = configureStore();
 
+if (window.Cypress) {
+  window.store = store
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

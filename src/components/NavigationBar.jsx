@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   AppBar,
   Box,
@@ -9,13 +9,19 @@ import {
   Alert
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./LoginForm";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  const { currentUser, errorMessage } = useSelector((state) => state);
-  const [showLogin, setShowLogin] = useState(false);
+  const dispatch = useDispatch();
+  const { currentUser, errorMessage, showLogin } = useSelector(
+    (state) => state
+  );
+
+  const toggleLogin = () => {
+    dispatch({ type: "TOGGLE_LOGIN", payload: !showLogin });
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -49,7 +55,7 @@ const NavigationBar = () => {
                   <Button
                     color="inherit"
                     data-cy="login-btn"
-                    onClick={() => setShowLogin(!showLogin)}
+                    onClick={toggleLogin}
                   >
                     Log In
                   </Button>

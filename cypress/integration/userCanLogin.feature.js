@@ -4,7 +4,6 @@ describe("User can log in", () => {
     cy.intercept("GET", "/api/recipes", {
       fixture: "recipesIndexResponse"
     });
-
     cy.visit("/");
     cy.get("[data-cy=login-btn]").click();
   });
@@ -35,15 +34,21 @@ describe("User can log in", () => {
     });
   });
 
-  describe.only("can fill wrong credentials", () => {
+  describe("can fill wrong credentials", () => {
     before(() => {
+      cy.intercept("GET", "/api/recipes", {
+        fixture: "recipesIndexResponse"
+      });
       cy.intercept("POST", "/api/auth/sign_in", {
           body: {
             success: false,
             errors: ["Invalid login credentials. Please try again."]
           },
           statusCode: 401
-        }).as("authenticateRequest");
+        })
+        .as("authenticateRequest");
+      cy.visit("/");
+      cy.get("[data-cy=login-btn]").click();
       cy.get("[data-cy=email-input]").type("johnskoglund@test.com");
       cy.get("[data-cy=password-input]").type("wrongpassword{enter}");
     });

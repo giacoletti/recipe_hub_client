@@ -10,6 +10,11 @@ const rootReducer = (state, action) => {
         ...state,
         errorMessage: action.payload
       };
+    case "TOGGLE_LOGIN":
+      return {
+        ...state,
+        showLogin: action.payload
+      };
 
     default:
       return state;
