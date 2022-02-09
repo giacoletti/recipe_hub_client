@@ -17,7 +17,7 @@ describe("User", () => {
       cy.get("[data-cy=register-button]").click();
     });
 
-    it("is expected to dispaly registration success message", () => {
+    it("is expected to display registration success message", () => {
       cy.get("[data-cy=flash-message]")
         .should("contain.text", "You successfully created an account")
         .and("be.visible");
@@ -34,7 +34,7 @@ describe("User", () => {
         fixture: "recipesIndexResponse.json"
       });
       cy.intercept("POST", "api/auth", {
-        fixture: "registrationPasswordMissmatch.json",
+        fixture: "registrationPasswordMismatch.json",
         statusCode: 401
       });
       cy.visit("/");
