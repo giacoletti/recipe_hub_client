@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Typography, TextField, Box, Button, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Authentication from "../modules/authentication";
+import Authentication from "../modules/Authentication";
 
 const RegistrationForm = () => {
   const [signupForm, setSignupForm] = useState({});
