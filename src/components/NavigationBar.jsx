@@ -10,9 +10,12 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Authentication from "../modules/Authentication";
+import { useSelector, useDispatch } from "react-redux";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state);
   const [showLogin, setShowLogin] = useState(false);
   const [loginForm, setLoginForm] = useState({});
 
@@ -26,6 +29,14 @@ const NavigationBar = () => {
   const handleEnter = async (event) => {
     if (event.keyCode === 13) {
       const response = await Authentication.signIn(loginForm);
+      if (response.success) {
+        dispatch({ type: "SET_CURRENT_USER", payload: response.data });
+      } else {
+        dispatch({
+          type: "SET_ERROR_MESSAGE",
+          payload: response
+        });
+      }
     }
   };
 

@@ -16,7 +16,10 @@ const Authentication = {
   },
   async signIn(credentials) {
     try {
-      const response = await auth.signIn(credentials.email, credentials.password);
+      const response = await auth.signIn(
+        credentials.email,
+        credentials.password
+      );
       return response;
     } catch (error) {
       return error.response?.data.errors || error.message;
