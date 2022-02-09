@@ -34,4 +34,23 @@ describe("User can log in", () => {
       cy.get("[data-cy=user-name]").should("contain", "John Skoglund");
     });
   });
+
+  describe("can fill wrong credentials", () => {
+    before(() => {
+      cy.intercept("POST", "/api/auth/sign_in", {
+          body: {
+            success: false,
+            errors: ["Invalid login credentials. Please try again."]
+          },
+          statusCode: 401
+        }).as("authenticateRequest");
+      cy.get("[data-cy=email-input]").type("johnskoglund@test.com");
+      cy.get("[data-cy=password-input]").type("wrongpassword{enter}");
+    });
+
+    it("is expected to display an error message", () => {
+      cy.get("[data-cy=flash-message]")
+        .should("contain.text", "Invalid login credentials. Please try again.");
+    });
+  });
 });
