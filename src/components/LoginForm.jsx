@@ -18,6 +18,10 @@ const LoginForm = () => {
           type: "SET_ERROR_MESSAGE",
           payload: response
         });
+        setTimeout(
+          () => dispatch({ type: "SET_ERROR_MESSAGE", payload: "" }),
+          4000
+        );
       }
     }
   };

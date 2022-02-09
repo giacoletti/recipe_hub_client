@@ -35,7 +35,7 @@ describe("User can log in", () => {
     });
   });
 
-  describe("can fill wrong credentials", () => {
+  describe.only("can fill wrong credentials", () => {
     before(() => {
       cy.intercept("POST", "/api/auth/sign_in", {
           body: {

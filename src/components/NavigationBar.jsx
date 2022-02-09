@@ -5,7 +5,8 @@ import {
   Toolbar,
   Typography,
   CssBaseline,
-  Button
+  Button,
+  Alert
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -13,7 +14,7 @@ import LoginForm from "./LoginForm";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state);
+  const { currentUser, errorMessage } = useSelector((state) => state);
   const [showLogin, setShowLogin] = useState(false);
 
   return (
@@ -65,6 +66,20 @@ const NavigationBar = () => {
           )}
         </Toolbar>
       </AppBar>
+      {errorMessage && (
+        <Alert
+          data-cy="flash-message"
+          severity="error"
+          style={{
+            marginBottom: 10,
+            marginTop: -20,
+            width: "auto",
+            float: "right"
+          }}
+        >
+          {errorMessage}
+        </Alert>
+      )}
     </Box>
   );
 };
