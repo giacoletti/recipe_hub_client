@@ -16,11 +16,11 @@ describe("User can log in", () => {
   describe("can fill in email and password input fields", () => {
     before(() => {
       cy.intercept("POST", "/api/auth/sign_in", {
-        fixture: "authenticatedUserResponse",
+        fixture: "authenticatedUserResponse"
       });
       cy.intercept("GET", "/api/auth/validate_token", {
         fixture: "authenticatedUserResponse",
-        headers: { uid: "johnskoglund@test.com", token: "12344556789" },
+        headers: { uid: "johnskoglund@test.com", token: "12344556789" }
       });
       cy.get("[data-cy=email-input]").type("johnskoglund@test.com");
       cy.get("[data-cy=password-input]").type("password{enter}");
@@ -30,13 +30,24 @@ describe("User can log in", () => {
       cy.get("[data-cy=user-name]").should("contain", "John Skoglund");
     });
 
-    describe("User can create a recipe", () => {
+    describe("Can create a recipe", () => {
       before(() => {
         cy.get("[data-cy=my-recipes]").click();
         cy.get("[data-cy=create-recipe]").click();
         cy.get("[data-cy=name-input]").type("Pancakes");
-        cy.get("[data-cy=ingredient-name-input");
-        cy.get("[data-cy=ingredient-amount-input");
+        cy.get("[data-cy=ingredient-name-input-1]").type("sugar");
+        cy.get("[data-cy=ingredient-amount-input-1]").type("100");
+        cy.get("[data-cy=ingredient-unit-input-1]").type("grams");
+        cy.get("[data-cy=add-ingredient-btn]").click();
+        cy.get("[data-cy=ingredient-name-input-2]").type("milk");
+        cy.get("[data-cy=ingredient-amount-input-2]").type("2");
+        cy.get("[data-cy=ingredient-unit-input-2]").type("dl");
+        cy.get("[data-cy=instructions]").type("Mix them together. Bake");
+        cy.get("[data-cy=submit-btn]").click();
+      });
+
+      it("is expected to hide create recipe form", () => {
+        cy.get("[data-cy=create-form]").should("not.be.visible");
       });
     });
   });
@@ -46,9 +57,9 @@ describe("User can log in", () => {
       cy.intercept("POST", "/api/auth/sign_in", {
         body: {
           success: false,
-          errors: ["Invalid login credentials. Please try again."],
+          errors: ["Invalid login credentials. Please try again."]
         },
-        statusCode: 401,
+        statusCode: 401
       }).as("authenticateRequest");
       cy.visit("/");
       cy.get("[data-cy=login-btn]").click();
