@@ -4,6 +4,7 @@ import Recipes from "../modules/Recipes";
 
 const RecipeCreateForm = () => {
   const [recipe, setRecipe] = useState({});
+  const [ingredientLines, setIngredientLines ] = useState(1)
 
   const createRecipe = async () => {
     const response = await Recipes.create(recipe);
@@ -12,20 +13,17 @@ const RecipeCreateForm = () => {
   const handleChange = (event) => {
     setRecipe({
       ...recipe,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  return (
-    <div>
-      <TextField
-        id="outlined-basic"
-        label="Recipe name"
-        variant="outlined"
-        data-cy="name-input"
-        name="name"
-        onChange={handleChange}
-      />
+  const addIngredientLine = () => {
+    setIngredientLines(ingredientLines + 1)
+    debugger
+  }
+
+  const ingredientFields = () => {
+    return (
       <>
         <TextField
           id="outlined-basic"
@@ -52,14 +50,45 @@ const RecipeCreateForm = () => {
           onChange={handleChange}
         />
       </>
+    );
+  };
+
+  return (
+    <div>
       <TextField
         id="outlined-basic"
-        label="Instructions"
+        label="Recipe name"
         variant="outlined"
-        data-cy="instructions"
-        name="instructions"
+        data-cy="name-input"
+        name="name"
         onChange={handleChange}
       />
+
+      <div>
+        <TextField
+          id="outlined-basic"
+          label="Instructions"
+          multiline
+          rows={4}
+          variant="outlined"
+          data-cy="instructions"
+          name="instructions"
+          onChange={handleChange}
+        />
+      </div>
+
+      <div data-cy="ingredients-section">
+        <h1>Ingredients</h1>
+        {ingredientFields()}
+        <div>
+
+        <button 
+        data-cy="add-new-ingredient-line"
+        onClick={() => addIngredientLine()}
+        >Add another ingredient</button>
+        </div>
+      </div>
+
       <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
         Submit
       </Button>
