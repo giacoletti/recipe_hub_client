@@ -4,7 +4,7 @@ import Recipes from "../modules/Recipes";
 
 const RecipeCreateForm = () => {
   const [recipe, setRecipe] = useState({});
-  const [ingredientLines, setIngredientLines ] = useState(1)
+  const [ingredientLines, setIngredientLines] = useState(1);
 
   const createRecipe = async () => {
     const response = await Recipes.create(recipe);
@@ -18,9 +18,8 @@ const RecipeCreateForm = () => {
   };
 
   const addIngredientLine = () => {
-    setIngredientLines(ingredientLines + 1)
-    debugger
-  }
+    setIngredientLines(ingredientLines + 1);
+  };
 
   const ingredientFields = () => {
     return (
@@ -80,13 +79,14 @@ const RecipeCreateForm = () => {
       <div data-cy="ingredients-section">
         <h1>Ingredients</h1>
         {ingredientFields()}
-        <div>
 
-        <button 
-        data-cy="add-new-ingredient-line"
-        onClick={() => addIngredientLine()}
-        >Add another ingredient</button>
-        </div>
+        <Button
+          data-cy="add-new-ingredient-line"
+          onClick={() => addIngredientLine()}
+          variant="outlined"
+        >
+          +
+        </Button>
       </div>
 
       <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
