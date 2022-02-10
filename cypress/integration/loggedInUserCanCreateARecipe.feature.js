@@ -14,7 +14,7 @@ describe("Logged in user can create a recipe", () => {
   describe("ingredients-section", () => {
     before(() => {
       cy.intercept("POST", "**api/recipes**", {
-        fixture: "createRecipeResponse.json",
+        fixture: "createRecipeResponse.json"
       }).as("create");
       cy.get("[data-cy=ingredients-section]").within(() => {
         cy.get("[data-cy=ingredient-name-input]").type("sugar");
@@ -28,6 +28,7 @@ describe("Logged in user can create a recipe", () => {
       cy.get("[data-cy=submit-btn]").click();
       cy.wait("@create");
     });
+
     it("is expected to show a success message", () => {
       cy.get("[data-cy=flash-message]").should(
         "contain",

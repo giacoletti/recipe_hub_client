@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Alert } from "@mui/material";
 import Recipes from "../modules/Recipes";
 
 const RecipeCreateForm = () => {
   const [recipe, setRecipe] = useState({});
   const [ingredientLines, setIngredientLines] = useState(1);
+  const [message, setMessage] = useState();
 
   const createRecipe = async () => {
     const response = await Recipes.create(recipe);
-    debugger
+    setMessage(response.data.message);
   };
 
   const handleChange = (event) => {
     setRecipe({
       ...recipe,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   };
 
@@ -93,6 +94,14 @@ const RecipeCreateForm = () => {
       <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
         Submit
       </Button>
+
+      {message ? (
+        <Alert data-cy="flash-message" severity="success">
+          {message}
+        </Alert>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
