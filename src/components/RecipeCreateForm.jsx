@@ -1,7 +1,10 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
+import IngredientField from "./IngredientField";
 
 const RecipeCreateForm = () => {
+
+  
   return (
     <div>
       <TextField
@@ -10,16 +13,32 @@ const RecipeCreateForm = () => {
         variant="outlined"
         data-cy="name-input"
       />
-      <div>
+      <>
+        <TextField
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
+          data-cy="ingredient-name-input-1"
+        />
         <TextField
           id="outlined-basic"
           label="Amount"
           variant="outlined"
-          data-cy="ingredient-name-input"
+          data-cy="ingredient-amount-input-1"
         />
-        <TextField id="outlined-basic" label="Unit" variant="outlined" />
-        <TextField id="outlined-basic" label="Name" variant="outlined" />
-      </div>
+        <TextField
+          id="outlined-basic"
+          label="Unit"
+          variant="outlined"
+          data-cy="ingredient-unit-input-1"
+        />
+        <Button
+          variant="outlined"
+          // onClick={() =>  }
+        >
+          +
+        </Button>
+      </>
       <TextField
         id="outlined-basic"
         label="Instructions"
