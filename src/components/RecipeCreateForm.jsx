@@ -8,6 +8,7 @@ const RecipeCreateForm = () => {
 
   const createRecipe = async () => {
     const response = await Recipes.create(recipe);
+    debugger
   };
 
   const handleChange = (event) => {
