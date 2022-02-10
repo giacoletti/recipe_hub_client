@@ -13,7 +13,7 @@ describe("User can log in", () => {
     cy.get("[data-cy=password-input]").should("be.visible");
   });
 
-  describe("can fill in email and password input fields", () => {
+  describe.only("can fill in email and password input fields", () => {
     before(() => {
       cy.intercept("POST", "/api/auth/sign_in", {
         fixture: "authenticatedUserResponse"
