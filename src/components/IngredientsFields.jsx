@@ -39,6 +39,7 @@ const IngredientsFields = ({ fields, inputList, setInputList }) => {
         return (
           <div key={`ingredient-fieldset-${i}`}>
             <Select
+              data-cy={`ingredient-name-${i}`}
               name="ingredient_id"
               value={item.ingredientId}
               label="Ingredient"
@@ -53,12 +54,14 @@ const IngredientsFields = ({ fields, inputList, setInputList }) => {
               })}
             </Select>
             <TextField
+              data-cy={`unit-input-${i}`}
               name="unit"
               placeholder="Unit"
               value={item.unit}
               onChange={(event) => handleInputChange(event, i)}
             />
             <TextField
+              data-cy={`amount-input-${i}`}
               name="amount"
               placeholder="Amount"
               value={item.amount}
