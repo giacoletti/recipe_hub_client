@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 describe("User can see their personal page", () => {
   before(() => {
-    cy.intercept("GET", "api/recipes", {
+    cy.intercept("GET", "api/recipes*", {
       fixture: "myRecipesResponse.json"
     }).as("MyRecipes");
     cy.visitAndAuthenticate();
@@ -21,10 +21,23 @@ describe("User can see their personal page", () => {
       .children()
       .first()
       .within(() => {
-        cy.get("[data-cy=recipe-title]").should(
-          "contain",
-          "Granny Smith apples mixed with brown"
-        );
+        cy.get("[data-cy=recipe-title]").should("contain", "Souvlaki");
       });
+  });
+  describe("User can see a message if no recipes are availible", () => {
+    before(() => {
+      cy.intercept("GET", "api/recipes*", {
+        fixture: "myRecipesResponseEmpty.json"
+      });
+      cy.visitAndAuthenticate();
+      cy.get("[data-cy=my-recipes]").click();
+    });
+
+    it("is expected to display the message", () => {
+      cy.get("[data-cy=response-message]").should(
+        "contain",
+        "You haven't created any recipes yet"
+      );
+    });
   });
 });
