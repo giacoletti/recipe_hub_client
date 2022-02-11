@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from "react";
+import { TextField, Button, Select, MenuItem } from "@mui/material";
+import axios from 'axios'
 
-const IngredientsFields = () => {
+const IngredientsFields = ({ fields, inputList, setInputList }) => {
+  const [ingredients, setIngredients] = useState([])
 
-  const ingredients = [
-    {id: 1, name: 'Sugar'},
-    {id: 2, name: 'Water'},
-    {id: 3, name: 'Rice'},
-    {id: 4, name: 'Milk'},
-  ]
-  const fields = { ingredientId: "", unit: "", amount: "" };
-  const [inputList, setInputList] = useState([fields]);
+  // const ingredients = [
+    // { id: 1, name: "Sugar" },
+    // { id: 2, name: "Water" },
+    // { id: 3, name: "Rice" },
+    // { id: 4, name: "Milk" },
+  // ];
+
+  const fetchIngredients = async () => {
+    const {data } = await axios.get('http://localhost:3000/api/ingredients')
+    setIngredients(data.ingredients)
+  }
+  useEffect(() => {
+    fetchIngredients()
+  }, [])
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -32,36 +41,54 @@ const IngredientsFields = () => {
     <>
       {inputList.map((item, i) => {
         return (
-          <>
-            <input
+          <div key={`ingredient-fieldset-${i}`}>
+            {/* <TextField
               name="ingredientId"
               placeholder="Enter ID"
               value={item.ingredientId}
               onChange={(event) => handleInputChange(event, i)}
-            />
-            <input
+            /> */}
+            <Select
+              name="ingredient_id"
+              value={item.ingredientId}
+              label="Ingredient"
+              onChange={(event) => handleInputChange(event, i)}
+            >
+              {ingredients.map((ingredient) => {
+                return (
+                  <MenuItem value={ingredient.id}>{ingredient.name}</MenuItem>
+                );
+              })}
+            </Select>
+
+            <TextField
               name="unit"
               placeholder="Unit"
               value={item.unit}
               onChange={(event) => handleInputChange(event, i)}
             />
-            <input
+            <TextField
               name="amount"
               placeholder="Amount"
               value={item.amount}
               onChange={(event) => handleInputChange(event, i)}
             />
             {inputList.length !== 1 && (
-              <button className="mr10" onClick={() => handleRemoveClick(i)}>
+              <Button
+                data-cy={`remove-btn-${i}`}
+                onClick={() => handleRemoveClick(i)}
+              >
                 -
-              </button>
+              </Button>
             )}
             <div>
               {inputList.length - 1 === i && (
-                <button onClick={handleAddClick}>Add another...</button>
+                <Button data-cy="add-ingredient-line" onClick={handleAddClick}>
+                  Add another...
+                </Button>
               )}
             </div>
-          </>
+          </div>
         );
       })}
       <div>{JSON.stringify(inputList)}</div>
