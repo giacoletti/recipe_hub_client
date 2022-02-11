@@ -14,7 +14,6 @@ const RecipeCreateForm = () => {
 
   const createRecipe = async () => {
     const params = {...recipe, ingredients_attributes: fields}
-    debugger
     const response = await Recipes.create(params);
     setMessage(response.message);
   };
@@ -26,7 +25,6 @@ const RecipeCreateForm = () => {
     });
   };
 
-  // const setIngredients =
 
   return (
     <div>

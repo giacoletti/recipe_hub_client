@@ -1,24 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, Select, MenuItem } from "@mui/material";
-import axios from 'axios'
+import axios from "axios";
 
 const IngredientsFields = ({ fields, inputList, setInputList }) => {
-  const [ingredients, setIngredients] = useState([])
-
-  // const ingredients = [
-    // { id: 1, name: "Sugar" },
-    // { id: 2, name: "Water" },
-    // { id: 3, name: "Rice" },
-    // { id: 4, name: "Milk" },
-  // ];
+  const [ingredients, setIngredients] = useState([]);
 
   const fetchIngredients = async () => {
-    const {data } = await axios.get('http://localhost:3000/api/ingredients')
-    setIngredients(data.ingredients)
-  }
+    const { data } = await axios.get("http://localhost:3000/api/ingredients");
+    setIngredients(data.ingredients);
+  };
   useEffect(() => {
-    fetchIngredients()
-  }, [])
+    fetchIngredients();
+  }, []);
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -42,12 +35,6 @@ const IngredientsFields = ({ fields, inputList, setInputList }) => {
       {inputList.map((item, i) => {
         return (
           <div key={`ingredient-fieldset-${i}`}>
-            {/* <TextField
-              name="ingredientId"
-              placeholder="Enter ID"
-              value={item.ingredientId}
-              onChange={(event) => handleInputChange(event, i)}
-            /> */}
             <Select
               name="ingredient_id"
               value={item.ingredientId}
@@ -56,7 +43,9 @@ const IngredientsFields = ({ fields, inputList, setInputList }) => {
             >
               {ingredients.map((ingredient) => {
                 return (
-                  <MenuItem value={ingredient.id}>{ingredient.name}</MenuItem>
+                  <MenuItem key={ingredient.id} value={ingredient.id}>
+                    {ingredient.name}
+                  </MenuItem>
                 );
               })}
             </Select>
