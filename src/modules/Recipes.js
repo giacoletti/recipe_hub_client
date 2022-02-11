@@ -37,6 +37,14 @@ const Recipes = {
     } catch (error) {
       return error;
     }
+  },
+  async getIngredients() {
+    try {
+      const { data } = await api.get("/ingredients");
+      return data.ingredients;
+    } catch (error) {
+      return error;
+    }
   }
 };
 export default Recipes;

@@ -4,13 +4,10 @@ import Recipes from "../modules/Recipes";
 import IngredientsFields from "./IngredientsFields";
 
 const RecipeCreateForm = () => {
-
-  
   const fields = { ingredient_id: "", unit: "", amount: "" };
   const [recipe, setRecipe] = useState({});
   const [inputList, setInputList] = useState([fields]);
   const [message, setMessage] = useState();
-
 
   const createRecipe = async () => {
     const params = {...recipe, ingredients_attributes: fields}
@@ -25,14 +22,13 @@ const RecipeCreateForm = () => {
     });
   };
 
-
   return (
     <div>
       <TextField
         id="outlined-basic"
         label="Recipe name"
         variant="outlined"
-        data-cy="name-input"
+        data-cy="recipe-name"
         name="name"
         onChange={handleChange}
       />

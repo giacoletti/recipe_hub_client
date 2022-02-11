@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Select, MenuItem } from "@mui/material";
-import axios from "axios";
+import Recipes from '../modules/Recipes';
 
 const IngredientsFields = ({ fields, inputList, setInputList }) => {
   const [ingredients, setIngredients] = useState([]);
 
   const fetchIngredients = async () => {
-    const { data } = await axios.get("http://localhost:3000/api/ingredients");
-    setIngredients(data.ingredients);
+    const response = await Recipes.getIngredients();
+    if (!response.message) {
+      setIngredients(response);
+    }
   };
+
   useEffect(() => {
     fetchIngredients();
   }, []);
@@ -49,7 +52,6 @@ const IngredientsFields = ({ fields, inputList, setInputList }) => {
                 );
               })}
             </Select>
-
             <TextField
               name="unit"
               placeholder="Unit"
