@@ -41,7 +41,7 @@ const RecipeCreateForm = () => {
         />
       </div>
       <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
-        Submit
+        Save
       </Button>
       {message ? (
         <Alert data-cy="flash-message" severity="info">
