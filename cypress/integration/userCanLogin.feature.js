@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe.only("User can log in", () => {
+describe("User can log in", () => {
   before(() => {
     cy.intercept("GET", "*/api/recipes", { body: "" });
     cy.visit("/");
@@ -17,11 +17,11 @@ describe.only("User can log in", () => {
   describe("can fill in email and password input fields", () => {
     before(() => {
       cy.intercept("POST", "/api/auth/sign_in", {
-        fixture: "authenticatedUserResponse",
+        fixture: "authenticatedUserResponse"
       });
       cy.intercept("GET", "/api/auth/validate_token", {
         fixture: "authenticatedUserResponse",
-        headers: { uid: "johnskoglund@test.com", token: "12344556789" },
+        headers: { uid: "johnskoglund@test.com", token: "12344556789" }
       });
       cy.get("[data-cy=email-input]").type("johnskoglund@test.com");
       cy.get("[data-cy=password-input]").type("password{enter}");
@@ -36,9 +36,9 @@ describe.only("User can log in", () => {
       cy.intercept("POST", "/api/auth/sign_in", {
         body: {
           success: false,
-          errors: ["Invalid login credentials. Please try again."],
+          errors: ["Invalid login credentials. Please try again."]
         },
-        statusCode: 401,
+        statusCode: 401
       });
       cy.visit("/");
       cy.get("[data-cy=login-btn]").click();

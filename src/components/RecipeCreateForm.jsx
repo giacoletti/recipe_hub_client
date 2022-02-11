@@ -4,7 +4,6 @@ import Recipes from "../modules/Recipes";
 
 const RecipeCreateForm = () => {
   const [recipe, setRecipe] = useState({});
-  const [ingredientLines, setIngredientLines] = useState(1);
   const [message, setMessage] = useState();
 
   const createRecipe = async () => {
@@ -19,41 +18,6 @@ const RecipeCreateForm = () => {
     });
   };
 
-  const addIngredientLine = () => {
-    setIngredientLines(ingredientLines + 1);
-  };
-
-  const ingredientFields = () => {
-    return (
-      <>
-        <TextField
-          id="outlined-basic"
-          label="Name"
-          variant="outlined"
-          data-cy="ingredient-name-input"
-          name="ingredient-name"
-          onChange={handleChange}
-        />
-        <TextField
-          id="outlined-basic"
-          label="Amount"
-          variant="outlined"
-          data-cy="ingredient-amount-input"
-          name="ingredient-amount"
-          onChange={handleChange}
-        />
-        <TextField
-          id="outlined-basic"
-          label="Unit"
-          variant="outlined"
-          data-cy="ingredient-unit-input"
-          name="ingredient-unit"
-          onChange={handleChange}
-        />
-      </>
-    );
-  };
-
   return (
     <div>
       <TextField
@@ -64,7 +28,6 @@ const RecipeCreateForm = () => {
         name="name"
         onChange={handleChange}
       />
-
       <div>
         <TextField
           id="outlined-basic"
@@ -77,26 +40,11 @@ const RecipeCreateForm = () => {
           onChange={handleChange}
         />
       </div>
-
-      <div data-cy="ingredients-section">
-        <h1>Ingredients</h1>
-        {ingredientFields()}
-
-        <Button
-          data-cy="add-new-ingredient-line"
-          onClick={() => addIngredientLine()}
-          variant="outlined"
-        >
-          +
-        </Button>
-      </div>
-
       <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
         Submit
       </Button>
-
       {message ? (
-        <Alert data-cy="flash-message" severity="success">
+        <Alert data-cy="flash-message" severity="info">
           {message}
         </Alert>
       ) : (
