@@ -3,12 +3,17 @@ import { api } from "./network";
 const Recipes = {
   async index(currentUser) {
     try {
-      const { data } = await api.get("/recipes", {
-        params: {
-          user: currentUser.uid
-        }
-      });
-      return data.recipes;
+      if (currentUser) {
+        const { data } = await api.get("/recipes", {
+          params: {
+            user: currentUser.uid
+          }
+        });
+        return data;
+      } else {
+        const { data } = await api.get("/recipes");
+        return data.recipes;
+      }
     } catch (error) {
       return error;
     }

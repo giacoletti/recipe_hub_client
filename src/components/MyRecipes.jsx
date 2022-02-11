@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Alert } from "@mui/material";
 import RecipeCreateForm from "./RecipeCreateForm";
 import Recipes from "../modules/Recipes";
 import { useSelector } from "react-redux";
@@ -9,10 +9,11 @@ const MyRecipes = () => {
   const [showForm, setShowForm] = useState(false);
   const { currentUser } = useSelector((state) => state);
   const [recipes, setRecipes] = useState([]);
+  //const [message, setMessage] = useState();
 
   const fetchRecipes = async () => {
     const response = await Recipes.index(currentUser);
-    setRecipes(response);
+    setRecipes(response.recipes);
   };
 
   useEffect(() => {
@@ -44,6 +45,16 @@ const MyRecipes = () => {
       <Grid container spacing={4} data-cy="article-collection">
         {userRecipes}
       </Grid>
+
+      {/* {recipes.length === 0 && message && (
+        <Alert
+          data-cy="flash-message"
+          severity="info"
+          sx={{ margin: "20px 0" }}
+        >
+          {message}
+        </Alert>
+      )} */}
     </>
   );
 };
