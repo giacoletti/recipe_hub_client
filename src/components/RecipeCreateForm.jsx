@@ -8,7 +8,7 @@ const RecipeCreateForm = () => {
 
   const createRecipe = async () => {
     const response = await Recipes.create(recipe);
-    setMessage(response.data.message);
+    setMessage(response.message);
   };
 
   const handleChange = (event) => {
@@ -43,12 +43,10 @@ const RecipeCreateForm = () => {
       <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
         Save
       </Button>
-      {message ? (
+      {message && (
         <Alert data-cy="flash-message" severity="info">
           {message}
         </Alert>
-      ) : (
-        ""
       )}
     </div>
   );

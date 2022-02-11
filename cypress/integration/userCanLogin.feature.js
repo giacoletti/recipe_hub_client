@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 describe("User can log in", () => {
   before(() => {
-    cy.intercept("GET", "*/api/recipes", { body: "" });
+    cy.intercept("GET", "/api/recipes", { body: { recipes: [] } });
     cy.visit("/");
     cy.get("[data-cy=login-btn]").click();
   });
