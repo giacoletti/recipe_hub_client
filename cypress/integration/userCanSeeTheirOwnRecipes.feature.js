@@ -1,13 +1,11 @@
-const { cyan } = require("@mui/material/colors");
-
 /* eslint-disable no-undef */
 describe("User can see their personal page", () => {
   before(() => {
     cy.intercept("GET", "api/recipes", {
       fixture: "myRecipesResponse.json"
     }).as("MyRecipes");
-    cy.visit("/");
     cy.visitAndAuthenticate();
+    cy.get("[data-cy=my-recipes]").click();
   });
 
   it("is expected to make a GET request to the API filtered by the users recipes", () => {
