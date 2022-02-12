@@ -8,9 +8,12 @@ describe("Recipe", () => {
   });
   describe("can be created by logged in user", () => {
     before(() => {
-      cy.intercept("GET", "api/ingredients", {
-        fixture: "ingredientsIndexResponse"
+      cy.intercept("GET", "api/recipes*", {
+        fixture: "myRecipesResponse.json"
       });
+      cy.intercept("POST", "api/recipes", {
+        fixture: "createRecipeResponse.json"
+      }).as("create");
       cy.visitAndAuthenticate();
       cy.get("[data-cy=my-recipes]").click();
       cy.get("[data-cy=create-recipe]").click();
@@ -69,6 +72,9 @@ describe("Recipe", () => {
   });
   describe("can't be created with empty name field", () => {
     before(() => {
+      cy.intercept("GET", "api/recipes*", {
+        fixture: "myRecipesResponse.json"
+      });
       cy.intercept("POST", "api/recipes", {
         fixture: "createWithoutName.json"
       });
