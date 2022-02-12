@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import IngredientsFields from "./IngredientsFields";
 
 const Input = styled("input")({
-  display: "none",
+  display: "none"
 });
 
 const RecipeCreateForm = () => {
@@ -25,7 +25,7 @@ const RecipeCreateForm = () => {
   const handleChange = (event) => {
     setRecipe({
       ...recipe,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   };
 
@@ -41,7 +41,7 @@ const RecipeCreateForm = () => {
     <div>
       <TextField
         id="outlined-basic"
-        label="recipe-name"
+        label="Recipe name"
         variant="outlined"
         data-cy="recipe-name"
         name="name"

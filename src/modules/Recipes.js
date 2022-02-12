@@ -6,8 +6,8 @@ const Recipes = {
       if (currentUser) {
         const { data } = await api.get("/recipes", {
           params: {
-            user: currentUser.uid,
-          },
+            user: currentUser.uid
+          }
         });
         return data;
       } else {
@@ -36,11 +36,11 @@ const Recipes = {
             name: recipe.name,
             instructions: recipe.instructions,
             image: recipe.image,
-            ingredients_attributes: [...recipe.ingredients_attributes],
-          },
+            ingredients_attributes: [...recipe.ingredients_attributes]
+          }
         },
         {
-          headers: headers,
+          headers: headers
         }
       );
       return response.data;
@@ -55,6 +55,6 @@ const Recipes = {
     } catch (error) {
       return error;
     }
-  },
+  }
 };
 export default Recipes;
