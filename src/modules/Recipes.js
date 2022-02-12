@@ -17,7 +17,7 @@ const Recipes = {
       return error;
     }
   },
-  async create(recipe, currentUser) {
+  async create(recipe) {
     try {
       const headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
       const response = await api.post(
@@ -26,7 +26,7 @@ const Recipes = {
           recipe: {
             name: recipe.name,
             instructions: recipe.instructions,
-            user: currentUser.uid
+            ingredients_attributes: [...recipe.ingredients_attributes]
           }
         },
         {

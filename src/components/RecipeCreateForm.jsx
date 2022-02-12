@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Alert } from "@mui/material";
 import Recipes from "../modules/Recipes";
-import { useSelector } from "react-redux";
 import IngredientsFields from "./IngredientsFields";
 
 const RecipeCreateForm = () => {
@@ -9,11 +8,10 @@ const RecipeCreateForm = () => {
   const [recipe, setRecipe] = useState({});
   const [inputList, setInputList] = useState([fields]);
   const [message, setMessage] = useState();
-  const { currentUser } = useSelector((state) => state);
 
   const createRecipe = async () => {
     const params = { ...recipe, ingredients_attributes: inputList };
-    const response = await Recipes.create(params, currentUser);
+    const response = await Recipes.create(params);
     setMessage(response.message);
   };
 
