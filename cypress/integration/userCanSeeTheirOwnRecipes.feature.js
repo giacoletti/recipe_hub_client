@@ -34,7 +34,7 @@ describe("User can see their personal page", () => {
     });
 
     it("is expeceted to redirect to full recipe view", () => {
-      cy.url().should("contain", "/recipes/1141");
+      cy.url().should("contain", "/recipes/1144");
     });
   });
 });
