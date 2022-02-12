@@ -13,16 +13,11 @@ describe("User can see their personal page", () => {
   });
 
   it("is expected to see collection of recipes", () => {
-    cy.get("[data-cy=current-user-recipes]").should("have.length", 3);
+    cy.get("[data-cy=recipe-collection]").children().should("have.length", 3);
   });
 
-  it("is expected to see recipe title", () => {
-    cy.get("[data-cy=current-user-recipes]")
-      .children()
-      .first()
-      .within(() => {
-        cy.get("[data-cy=recipe-title]").should("contain", "Souvlaki");
-      });
+  it("is expected to see recipe name", () => {
+    cy.get("[data-cy=recipe-name-1]").should("contain", "Souvlaki");
   });
 
   describe("user can click on recipe to and navigate to full recipe view", () => {
@@ -30,7 +25,7 @@ describe("User can see their personal page", () => {
       cy.intercept("GET", "api/recipes/*", {
         fixture: "recipesShowResponse"
       });
-      cy.get("[data-cy=current-user-recipes]").first().click();
+      cy.get("[data-cy=recipe-card-1]").click();
     });
 
     it("is expeceted to redirect to full recipe view", () => {
