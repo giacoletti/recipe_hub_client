@@ -90,7 +90,6 @@ const IngredientsFields = ({ fields, inputList, setInputList }) => {
           </div>
         );
       })}
-      <div>{JSON.stringify(inputList)}</div>
     </>
   );
 };
