@@ -25,7 +25,7 @@ describe("User can see their personal page", () => {
       });
   });
 
-  describe("user can click on recipe to update it", () => {
+  describe("user can click on recipe to and navigate to full recipe view", () => {
     before(() => {
       cy.intercept("GET", "api/recipes/*", {
         fixture: "recipesShowResponse"
