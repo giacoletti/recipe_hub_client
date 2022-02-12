@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Select, MenuItem } from "@mui/material";
-import Recipes from '../modules/Recipes';
+import Recipes from "../modules/Recipes";
 
 const IngredientsFields = ({ fields, inputList, setInputList }) => {
   const [ingredients, setIngredients] = useState([]);
@@ -43,11 +43,16 @@ const IngredientsFields = ({ fields, inputList, setInputList }) => {
               name="ingredient_id"
               value={item.ingredientId}
               label="Ingredient"
+              defaultValue={""}
               onChange={(event) => handleInputChange(event, i)}
             >
               {ingredients.map((ingredient) => {
                 return (
-                  <MenuItem key={ingredient.id} value={ingredient.id}>
+                  <MenuItem
+                    key={ingredient.id}
+                    value={ingredient.id}
+                    data-cy={"ingredient-option-" + ingredient.id}
+                  >
                     {ingredient.name}
                   </MenuItem>
                 );
