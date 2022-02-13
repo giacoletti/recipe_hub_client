@@ -19,7 +19,7 @@ const RecipeFullView = () => {
 
   const confirmDelete = (confirm) => {
     confirm.stopPropagation();
-    if (window.confirm("Are sure want to delete this recipe?")) {
+    if (window.confirm("Are you sure you want to delete this recipe?")) {
       console.log("Yes");
       deleteRecipe();
       setTimeout(() => navigate("/my-recipes"), 1000);

@@ -47,17 +47,22 @@ describe("User can see their personal page", () => {
         cy.intercept("DELETE", "api/recipes/*", {
           fixture: "deleteResponse"
         }).as("RecipeDelete");
+        cy.intercept("POST", "/api/auth/sign_in", {
+          fixture: "authenticatedUserResponse"
+        });
+        cy.intercept("GET", "/api/auth/validate_token", {
+          fixture: "authenticatedUserResponse",
+          headers: { uid: "johnskoglund@test.com", token: "12344556789" }
+        });
         cy.get("[data-cy=delete-btn]").click();
       });
 
       it("is expected to trigger a confirmation with a message", () => {
         cy.on("window:confirm", (text) => {
-          expect(text).to.contains("Are sure want to delete this recipe?");
+          expect(text).to.contains(
+            "Are you sure you want to delete this recipe?"
+          );
         });
-      });
-
-      it("is expected to confirm answer", () => {
-        cy.get("data-cy=confirm-answer").contains("Answer: Yes");
       });
 
       it("is expected to make a DELETE request to the API", () => {
