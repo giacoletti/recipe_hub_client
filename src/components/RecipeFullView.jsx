@@ -16,15 +16,13 @@ const RecipeFullView = () => {
   const deleteRecipe = async () => {
     const data = await Recipes.delete(id);
     setMessage(data.message);
-    debugger;
-    return data;
+    setTimeout(() => navigate("/my-recipes"), 2000);
   };
 
   const confirmDelete = (confirm) => {
     confirm.stopPropagation();
     if (window.confirm("Are you sure you want to delete this recipe?")) {
       deleteRecipe();
-      setTimeout(() => navigate("/my-recipes"), 1500);
     }
   };
 
@@ -42,8 +40,12 @@ const RecipeFullView = () => {
           >
             Delete
           </Button>
+          {message && (
+            <Alert data-cy="flash-message" severity="info">
+              {message}
+            </Alert>
+          )}
           <ShowFullRecipe />
-          <Alert data-cy="flash-message">{message}</Alert>
         </>
       ) : (
         <ShowFullRecipe />
