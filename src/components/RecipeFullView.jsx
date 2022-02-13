@@ -5,12 +5,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useSelector } from "react-redux";
 import ShowFullRecipe from "./ShowFullRecipe";
 import Recipes from "../modules/Recipes";
+import { useNavigate } from "react-router-dom";
 
 const RecipeFullView = () => {
   const { currentUser } = useSelector((state) => state);
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const deleteRecipe = async () => {
-    debugger;
     const data = await Recipes.delete(id);
     return data;
   };
@@ -20,6 +22,7 @@ const RecipeFullView = () => {
     if (window.confirm("Are sure want to delete this recipe?")) {
       console.log("Yes");
       deleteRecipe();
+      setTimeout(() => navigate("/my-recipes"), 1000);
     } else {
       console.log("no");
     }

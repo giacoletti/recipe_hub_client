@@ -54,14 +54,18 @@ describe("User can see their personal page", () => {
         cy.on("window:confirm", (text) => {
           expect(text).to.contains("Are sure want to delete this recipe?");
         });
+      });
 
-        it("is expected to confirm answer", () => {
-          cy.get("data-cy=confirm-answer").contains("Answer: Yes");
-        });
+      it("is expected to confirm answer", () => {
+        cy.get("data-cy=confirm-answer").contains("Answer: Yes");
+      });
 
-        it("is expected to make a DELETE request to the API", () => {
-          cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
-        });
+      it("is expected to make a DELETE request to the API", () => {
+        cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
+      });
+
+      it("is expected to redirect to My Recipes view", () => {
+        cy.url().should("contain", "/my-recipes");
       });
     });
   });
@@ -79,6 +83,7 @@ describe("A visitor can not delete a recipe", () => {
     cy.wait("@RecipesIndex");
     cy.get("[data-cy=recipe-card-1]").click();
   });
+
   it("is expected to not show a delete button", () => {
     cy.get("[data-cy=delete-btn]").should("not.exist");
   });
