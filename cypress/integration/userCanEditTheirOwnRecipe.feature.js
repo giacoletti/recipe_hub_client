@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe("Foo Bar", () => {
+describe("User, when clicking on his own recipe", () => {
   before(() => {
     cy.intercept("GET", "api/recipes*", {
       fixture: "myRecipesResponse.json"
@@ -40,6 +40,26 @@ describe("Foo Bar", () => {
         "contain.text",
         "1. On medium high heat preheat a pan/wok and once heated, add the cooking oil and spread it well with a spatula."
       );
+    });
+
+    describe("Can update the recipe and save", () => {
+      before(() => {
+        cy.intercept("PUT", "api/recipes**", {
+          fixture: "recipesUpdateResponse.json"
+        });
+        cy.get("[data-cy=recipe-name]").type("Pancakes");
+        cy.get("[data-cy=instructions]").type(
+          "Mix the flour and fry the paste"
+        );
+        cy.get("[data-cy=submit-btn]").click();
+      });
+
+      it("is expected to display successful message", () => {
+        cy.get("[data-cy=flash-message]").should(
+          "contain.text",
+          "Your recipe was updated."
+        );
+      });
     });
   });
 });
