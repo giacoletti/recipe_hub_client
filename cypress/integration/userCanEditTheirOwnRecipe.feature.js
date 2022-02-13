@@ -18,6 +18,9 @@ describe("Foo Bar", () => {
 
   describe('By clicking "Edit" button', () => {
     before(() => {
+      cy.intercept("GET", "api/recipes/*", {
+        fixture: "recipesShowResponse"
+      });
       cy.get("[data-cy=edit-recipe-btn]").click();
     });
 
