@@ -8,11 +8,12 @@ import Recipes from "../modules/Recipes";
 
 const RecipeFullView = () => {
   const { currentUser } = useSelector((state) => state);
+  const { id } = useParams();
 
   const deleteRecipe = async () => {
     const data = await Recipes.delete(id);
+    return data;
   };
-  const { id } = useParams();
 
   return (
     <>

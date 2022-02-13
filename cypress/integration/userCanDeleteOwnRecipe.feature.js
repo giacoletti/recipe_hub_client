@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("User can see their personal page", () => {
   before(() => {
     cy.intercept("GET", "api/recipes*", {
@@ -23,10 +24,10 @@ describe("User can see their personal page", () => {
     before(() => {
       cy.intercept("GET", "api/recipes/*", {
         fixture: "recipesShowResponse"
-      }).as("RecipeDelete");
+      });
       cy.intercept("DELETE", "api/recipes/*", {
         fixture: "deleteResponse"
-      });
+      }).as("RecipeDelete");
       cy.get("[data-cy=recipe-card-1]").click();
     });
 
@@ -37,7 +38,7 @@ describe("User can see their personal page", () => {
     it("is expected to show a delete button if a user is logged in", () => {
       cy.get("[data-cy=delete-btn]").should("be.visible").click();
     });
-    
+
     it("is expected to make a DELETE request to the API", () => {
       cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
     });
