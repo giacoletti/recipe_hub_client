@@ -20,7 +20,7 @@ describe("User can see their personal page", () => {
     cy.get("[data-cy=recipe-name-1]").should("contain", "Souvlaki");
   });
 
-  describe.only("A logged in user can delete own recipe", () => {
+  describe("A logged in user can delete own recipe", () => {
     before(() => {
       cy.intercept("GET", "api/recipes/*", {
         fixture: "recipesShowResponse"
@@ -36,11 +36,22 @@ describe("User can see their personal page", () => {
     });
 
     it("is expected to show a delete button if a user is logged in", () => {
-      cy.get("[data-cy=delete-btn]").should("be.visible").click();
+      cy.get("[data-cy=delete-btn]").should("be.visible");
     });
 
-    it("is expected to make a DELETE request to the API", () => {
-      cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
+    describe("User can delete a recipe by pressing the delete button", () => {
+      before(() => {
+        cy.intercept("GET", "api/recipes/*", {
+          fixture: "recipesShowResponse"
+        });
+        cy.intercept("DELETE", "api/recipes/*", {
+          fixture: "deleteResponse"
+        }).as("RecipeDelete");
+        cy.get("[data-cy=delete-btn]").click();
+      });
+      it("is expected to make a DELETE request to the API", () => {
+        cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
+      });
     });
   });
 });
