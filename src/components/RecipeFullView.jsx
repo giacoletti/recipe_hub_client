@@ -9,10 +9,20 @@ import Recipes from "../modules/Recipes";
 const RecipeFullView = () => {
   const { currentUser } = useSelector((state) => state);
   const { id } = useParams();
-
   const deleteRecipe = async () => {
+    debugger;
     const data = await Recipes.delete(id);
     return data;
+  };
+
+  const confirmDelete = (confirm) => {
+    confirm.stopPropagation();
+    if (window.confirm("Are sure want to delete this recipe?")) {
+      console.log("Yes");
+      deleteRecipe();
+    } else {
+      console.log("no");
+    }
   };
 
   return (
@@ -20,7 +30,7 @@ const RecipeFullView = () => {
       {currentUser ? (
         <>
           <Button
-            onClick={deleteRecipe}
+            onClick={confirmDelete}
             sx={{ margin: 1, ml: 77, flexGrow: 1, boxShadow: 3 }}
             color="inherit"
             data-cy="delete-btn"
