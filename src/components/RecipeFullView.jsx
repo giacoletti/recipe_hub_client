@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { styled, Typography, Grid, Paper } from "@mui/material";
+import { styled, Typography, Grid, Paper, Button } from "@mui/material";
 import Recipes from "../modules/Recipes";
 import IngredientsList from "./IngredientsList";
 
@@ -19,7 +19,7 @@ const RecipeFullView = () => {
     const data = await Recipes.show(id);
     setRecipe(data.recipe);
   };
-  
+
   useEffect(() => {
     fetchRecipe();
   }, []);
@@ -28,6 +28,9 @@ const RecipeFullView = () => {
     <Paper
       sx={{ p: 2, margin: "auto", maxWidth: 500, flexGrow: 1, boxShadow: 3 }}
     >
+      <Button data-cy="edit-recipe-btn" variant="contained" color="success">
+        Edit
+      </Button>
       <Grid container spacing={2}>
         <Grid item>
           <Img
