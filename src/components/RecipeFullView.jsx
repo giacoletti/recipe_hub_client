@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Alert } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useSelector } from "react-redux";
 import ShowFullRecipe from "./ShowFullRecipe";
@@ -9,22 +9,22 @@ import { useNavigate } from "react-router-dom";
 
 const RecipeFullView = () => {
   const { currentUser } = useSelector((state) => state);
+  const [message, setMessage] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
 
   const deleteRecipe = async () => {
     const data = await Recipes.delete(id);
+    setMessage(data.message);
+    debugger;
     return data;
   };
 
   const confirmDelete = (confirm) => {
     confirm.stopPropagation();
     if (window.confirm("Are you sure you want to delete this recipe?")) {
-      console.log("Yes");
       deleteRecipe();
-      setTimeout(() => navigate("/my-recipes"), 1000);
-    } else {
-      console.log("no");
+      setTimeout(() => navigate("/my-recipes"), 1500);
     }
   };
 
@@ -43,6 +43,7 @@ const RecipeFullView = () => {
             Delete
           </Button>
           <ShowFullRecipe />
+          <Alert data-cy="flash-message">{message}</Alert>
         </>
       ) : (
         <ShowFullRecipe />

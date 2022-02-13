@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe("User can see their personal page", () => {
+describe("User can delete own recipe", () => {
   before(() => {
     cy.intercept("GET", "api/recipes*", {
       fixture: "myRecipesResponse.json"
@@ -47,14 +47,11 @@ describe("User can see their personal page", () => {
         cy.intercept("DELETE", "api/recipes/*", {
           fixture: "deleteResponse"
         }).as("RecipeDelete");
-        cy.intercept("POST", "/api/auth/sign_in", {
-          fixture: "authenticatedUserResponse"
-        });
-        cy.intercept("GET", "/api/auth/validate_token", {
-          fixture: "authenticatedUserResponse",
-          headers: { uid: "johnskoglund@test.com", token: "12344556789" }
-        });
         cy.get("[data-cy=delete-btn]").click();
+      });
+
+      it("is expected to make a DELETE request to the API", () => {
+        cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
       });
 
       it("is expected to trigger a confirmation with a message", () => {
@@ -65,9 +62,12 @@ describe("User can see their personal page", () => {
         });
       });
 
-      it("is expected to make a DELETE request to the API", () => {
-        cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
-      });
+      // it("it is expected to respond with a message", () => {
+      //   cy.get("[data-cy=flash-message]").should(
+      //     "contain",
+      //     "Your recipe has been deleted!"
+      //   );
+      // });
 
       it("is expected to redirect to My Recipes view", () => {
         cy.url().should("contain", "/my-recipes");
