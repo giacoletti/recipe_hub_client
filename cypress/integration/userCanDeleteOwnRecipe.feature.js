@@ -51,8 +51,6 @@ describe("User can see their personal page", () => {
       });
 
       it("is expected to trigger a confirmation with a message", () => {
-        cy.get("[data-cy=delete-btn]").click();
-
         cy.on("window:confirm", (text) => {
           expect(text).to.contains("Are sure want to delete this recipe?");
         });
@@ -60,6 +58,7 @@ describe("User can see their personal page", () => {
         it("is expected to confirm answer", () => {
           cy.get("data-cy=confirm-answer").contains("Answer: Yes");
         });
+
         it("is expected to make a DELETE request to the API", () => {
           cy.wait("@RecipeDelete").its("request.method").should("eq", "DELETE");
         });
