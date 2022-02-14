@@ -83,6 +83,14 @@ const RecipeCreateForm = () => {
         name="instructions"
         onChange={handleChange}
       />
+      <Typography
+        data-cy="ingredients-label"
+        variant="body1"
+        gutterBottom
+        component="div"
+      >
+        Ingredients
+      </Typography>
       <IngredientsFields
         fields={fields}
         inputList={inputList}
