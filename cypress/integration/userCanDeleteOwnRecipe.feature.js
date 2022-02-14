@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe("Loged in user", () => {
+describe("Logged in user", () => {
   before(() => {
     cy.intercept("GET", "api/recipes*", {
       fixture: "myRecipesResponse.json"
@@ -16,7 +16,7 @@ describe("Loged in user", () => {
       cy.get("[data-cy=recipe-card-1]").click();
     });
 
-    it("is expeceted to redirect to full recipe view", () => {
+    it("is expected to redirect to full recipe view", () => {
       cy.url().should("contain", "/recipes/1144");
     });
 
