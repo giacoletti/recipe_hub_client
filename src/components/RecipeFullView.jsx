@@ -6,6 +6,7 @@ import IngredientsList from "./IngredientsList";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ForkRight } from "@mui/icons-material";
 
 const Img = styled("img")({
   margin: "auto",
@@ -57,11 +58,14 @@ const RecipeFullView = () => {
         </Alert>
       )}
       <Paper
-        sx={{ p: 2, margin: "auto", maxWidth: 500, flexGrow: 1, boxShadow: 3 }}
+        sx={{ p: 2, margin: "auto", maxWidth: 800, flexGrow: 1, boxShadow: 3 }}
       >
         {showEditDelete && (
           <>
-            <Button data-cy="edit-recipe-btn" variant="contained" color="success"
+            <Button
+              data-cy="edit-recipe-btn"
+              variant="contained"
+              color="success"
               onClick={() => navigate(`/recipes/${recipe.id}/edit`)}
             >
               Edit
@@ -77,9 +81,9 @@ const RecipeFullView = () => {
             </Button>
           </>
         )}
-        <Grid container spacing={2}>
-          <Grid item>
-            <Img
+        <Grid sx={{ position: "relative"}} spacing={2}>
+          <Grid container item>
+            <Img sx={{ position: "absolute", right: "20px" }}
               src="https://mui.com/static/images/cards/paella.jpg"
               loading="lazy"
             />
