@@ -41,6 +41,12 @@ const RecipeCreateForm = () => {
     }
   };
 
+  const updateRecipe = async () => {
+    const data = await Recipes.update(recipe);
+    setMessage(data.message);
+    setTimeout(() => { setMessage("") }, 4000);
+  };
+
   useEffect(() => {
     id && fetchRecipe();
   }, []);
@@ -82,7 +88,7 @@ const RecipeCreateForm = () => {
           setInputList={setInputList}
         />
       </div>
-      <Button variant="outlined" data-cy="submit-btn">
+      <Button variant="outlined" data-cy="submit-btn" onClick={updateRecipe}>
         Save
       </Button>
       <div>
