@@ -1,0 +1,14 @@
+{
+  "recipe": {
+    "id": 12,
+    "name": "Pancakes with syrup",
+    "instructions": "Mix it",
+    "ingredients": [
+      { "amount": 100.0, "unit": "grams", "name": "sugar" },
+      { "amount": 400.0, "unit": "ml", "name": "milk" }
+    ],
+    "created_at": "February 07, 2022 16:38",
+    "updated_at": "February 07, 2022 16:38",
+    "owner": "misterfreeze@batman.com"
+  }
+}
