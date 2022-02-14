@@ -51,7 +51,7 @@ describe("A visitor, by clicking a recipe card in the main view", () => {
     );
   });
 
-  describe.only("goes back to main page", () => {
+  describe("goes back to main page", () => {
     before(() => {
       cy.intercept("GET", "/api/recipes", {
         fixture: "recipesIndexResponse.json"
