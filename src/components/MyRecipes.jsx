@@ -33,20 +33,33 @@ const MyRecipes = () => {
     <Container style={{ margin: "auto", width: "50%" }}>
       {showForm ? (
         <div>
-          <Button data-cy="hide-recipe" onClick={() => setShowForm(!showForm)}>
+          <Button
+            data-cy="hide-recipe"
+            onClick={() => setShowForm(!showForm)}
+            color="warning"
+          >
             Maybe later
           </Button>
           <RecipeCreateForm />
         </div>
       ) : (
-        <Button data-cy="create-recipe" onClick={() => setShowForm(!showForm)}>
+        <Button
+          data-cy="create-recipe"
+          onClick={() => setShowForm(!showForm)}
+          color="secondary"
+        >
           Write a recipe
         </Button>
       )}
-      <Grid container spacing={4} data-cy="recipe-collection" style={{ marginTop: 10 }}>
+      <Grid
+        container
+        spacing={4}
+        data-cy="recipe-collection"
+        style={{ marginTop: 10 }}
+      >
         {userRecipes}
       </Grid>
-    </ Container>
+    </Container>
   );
 };
 
