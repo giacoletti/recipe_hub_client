@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, Alert, Typography } from "@mui/material";
+import { TextField, Button, Alert, Typography, Box } from "@mui/material";
 import Recipes from "../modules/Recipes";
 import utilities from "../modules/utilities";
 import { styled } from "@mui/material/styles";
@@ -40,7 +40,16 @@ const RecipeCreateForm = () => {
   };
 
   return (
-    <div>
+    <Box
+      component="form"
+      sx={{
+        "& > :not(style)": { m: 1 },
+        boxShadow: 3,
+        maxWidth: "500px"
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <TextField
         id="outlined-basic"
         label="Recipe name"
@@ -53,31 +62,27 @@ const RecipeCreateForm = () => {
         value={recipe.name}
         onChange={handleChange}
       />
-      <div>
-        <TextField
-          id="outlined-basic"
-          label="Instructions"
-          value={recipe.instructions}
-          multiline
-          rows={4}
-          variant="outlined"
-          InputLabelProps={{
-            shrink: true
-          }}
-          data-cy="instructions"
-          name="instructions"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <IngredientsFields
-          fields={fields}
-          inputList={inputList}
-          setInputList={setInputList}
-        />
-      </div>
+      <TextField
+        id="outlined-basic"
+        label="Instructions"
+        value={recipe.instructions}
+        multiline
+        rows={4}
+        variant="outlined"
+        InputLabelProps={{
+          shrink: true
+        }}
+        data-cy="instructions"
+        name="instructions"
+        onChange={handleChange}
+      />
+      <IngredientsFields
+        fields={fields}
+        inputList={inputList}
+        setInputList={setInputList}
+      />
       <Button
-        startIcon={<SaveIcon />}
+        endIcon={<SaveIcon />}
         variant="contained"
         color="secondary"
         data-cy="submit-btn"
@@ -100,7 +105,8 @@ const RecipeCreateForm = () => {
             startIcon={<PhotoCamera />}
             variant="contained"
             color="success"
-            component="span"
+            // component="span"
+            style={{ margin: 10 }}
           >
             Image
           </Button>
@@ -118,7 +124,7 @@ const RecipeCreateForm = () => {
           {message}
         </Alert>
       )}
-    </div>
+    </Box>
   );
 };
 
