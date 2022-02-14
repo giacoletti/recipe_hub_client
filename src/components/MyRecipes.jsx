@@ -34,13 +34,13 @@ const MyRecipes = () => {
       {showForm ? (
         <div>
           <Button data-cy="hide-recipe" onClick={() => setShowForm(!showForm)}>
-            Hide create form
+            Maybe later
           </Button>
           <RecipeCreateForm />
         </div>
       ) : (
         <Button data-cy="create-recipe" onClick={() => setShowForm(!showForm)}>
-          Create recipe
+          Write a recipe
         </Button>
       )}
       <Grid container spacing={4} data-cy="recipe-collection" style={{ marginTop: 10 }}>
