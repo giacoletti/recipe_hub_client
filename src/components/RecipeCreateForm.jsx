@@ -4,6 +4,8 @@ import Recipes from "../modules/Recipes";
 import utilities from "../modules/utilities";
 import { styled } from "@mui/material/styles";
 import IngredientsFields from "./IngredientsFields";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import SaveIcon from "@mui/icons-material/Save";
 
 const Input = styled("input")({
   display: "none"
@@ -74,7 +76,13 @@ const RecipeCreateForm = () => {
           setInputList={setInputList}
         />
       </div>
-      <Button variant="outlined" data-cy="submit-btn" onClick={createRecipe}>
+      <Button
+        startIcon={<SaveIcon />}
+        variant="contained"
+        color="secondary"
+        data-cy="submit-btn"
+        onClick={createRecipe}
+      >
         Save
       </Button>
       <div>
@@ -88,7 +96,12 @@ const RecipeCreateForm = () => {
             multiple
             type="file"
           />
-          <Button variant="contained" component="span">
+          <Button
+            startIcon={<PhotoCamera />}
+            variant="contained"
+            color="success"
+            component="span"
+          >
             Image
           </Button>
         </label>
