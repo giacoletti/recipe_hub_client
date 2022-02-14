@@ -13,9 +13,6 @@ describe("Loged in user", () => {
       cy.intercept("GET", "api/recipes/*", {
         fixture: "recipesShowResponse"
       });
-      cy.intercept("DELETE", "api/recipes/*", {
-        fixture: "deleteResponse"
-      }).as("RecipeDelete");
       cy.get("[data-cy=recipe-card-1]").click();
     });
 
@@ -70,10 +67,16 @@ describe("Loged in user", () => {
 
   describe("Logged in user can not delete other users recipes", () => {
     before(() => {
-      cy.intercept("GET", "api/recipes**", {
-        fixture: "recipeDifferentOwner.json"
+      cy.intercept("GET", "api/recipes/*", {
+        fixture: "recipeDifferentOwner"
       });
+      cy.get("[data-cy=recipe-card-2]").click();
     });
+
+    it("is expected to be in the single recipe view", () => {
+      cy.url().should("contain", "/recipes/1143");
+    });
+
     it("is expected to not show a delete button for other users recipes", () => {
       cy.get("[data-cy=delete-btn]").should("not.exist");
     });
@@ -87,7 +90,7 @@ describe("A visitor can not delete a recipe", () => {
     }).as("RecipesIndex");
     cy.intercept("GET", "/api/recipes/**", {
       fixture: "recipesShowResponse.json"
-    }).as("RecipeShow");
+    });
     cy.visit("/");
     cy.wait("@RecipesIndex");
     cy.get("[data-cy=recipe-card-1]").click();
