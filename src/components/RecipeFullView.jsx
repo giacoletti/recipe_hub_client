@@ -6,7 +6,6 @@ import IngredientsList from "./IngredientsList";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ForkRight } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 
 const Img = styled("img")({
@@ -88,21 +87,18 @@ const RecipeFullView = () => {
             </Button>
           </>
         )}
-        <Grid sx={{ position: "relative" }} spacing={2}>
-          <Grid container item>
-            <Img
-              sx={{ position: "absolute", right: "20px" }}
-              src="https://mui.com/static/images/cards/paella.jpg"
-              loading="lazy"
-            />
-          </Grid>
-          <Grid item>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
             <Typography gutterBottom variant="h4" data-cy="recipe-name">
               {recipe.name}
             </Typography>
-          </Grid>
-          <Grid item xs={12}>
             <IngredientsList ingredients={recipe.ingredients} />
+          </Grid>
+          <Grid item xs={6}>
+            <Img
+              src="https://mui.com/static/images/cards/paella.jpg"
+              loading="lazy"
+            />
           </Grid>
           <Grid item>
             <Typography
