@@ -32,7 +32,6 @@ describe("Loged in user", () => {
         cy.intercept("DELETE", "api/recipes/*", {
           fixture: "deleteResponse"
         }).as("RecipeDelete");
-
         cy.get("[data-cy=delete-btn]").click();
       });
 
@@ -66,6 +65,17 @@ describe("Loged in user", () => {
           cy.url().should("contain", "/my-recipes");
         });
       });
+    });
+  });
+
+  describe("Logged in user can not delete other users recipes", () => {
+    before(() => {
+      cy.intercept("GET", "api/recipes**", {
+        fixture: "recipeDifferentOwner.json"
+      });
+    });
+    it("is expected to not show a delete button for other users recipes", () => {
+      cy.get("[data-cy=delete-btn]").should("not.exist");
     });
   });
 });
