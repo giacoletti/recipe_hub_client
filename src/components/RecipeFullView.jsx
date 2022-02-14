@@ -67,7 +67,6 @@ const RecipeFullView = () => {
               Edit
             </Button>
             <Button
-              // sx={{ margin: 1, ml: 44, flexGrow: 1, boxShadow: 3 }}
               data-cy="delete-btn"
               color="inherit"
               variant="outlined"
