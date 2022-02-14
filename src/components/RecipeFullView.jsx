@@ -33,7 +33,9 @@ const RecipeFullView = () => {
   const deleteRecipe = async () => {
     const data = await Recipes.delete(id);
     setMessage(data.message);
-    setTimeout(() => navigate("/my-recipes"), 2000);
+    if (data.message === "Your Recipe has been deleted!") {
+      setTimeout(() => navigate("/my-recipes"), 2000);
+    }
   };
 
   const confirmDelete = (confirm) => {
