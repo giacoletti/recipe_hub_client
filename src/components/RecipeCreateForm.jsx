@@ -118,11 +118,12 @@ const RecipeCreateForm = () => {
         </Typography>
       </div>
       <Button
+        data-cy="submit-btn"
+        onClick={createRecipe}
         endIcon={<Save />}
         variant="contained"
         color="secondary"
-        data-cy="submit-btn"
-        onClick={createRecipe}
+        style={{ marginLeft: 26 }}
       >
         Save
       </Button>
