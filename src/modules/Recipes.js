@@ -51,7 +51,6 @@ const Recipes = {
   async update(recipe) {
     try {
       const headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-      debugger;
       const response = await api.put(
         `/recipes/${recipe.id}`,
         {
@@ -68,7 +67,6 @@ const Recipes = {
       );
       return response.data;
     } catch (error) {
-      debugger;
       return error;
     }
   },
