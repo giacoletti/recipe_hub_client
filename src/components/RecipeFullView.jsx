@@ -48,64 +48,66 @@ const RecipeFullView = () => {
   }, []);
 
   return (
-    <Paper
-      sx={{ p: 2, margin: "auto", maxWidth: 500, flexGrow: 1, boxShadow: 3 }}
-    >
-      {showEditDelete && (
-        <>
-          <Button
-            sx={{ margin: 1, ml: 44, flexGrow: 1, boxShadow: 3 }}
-            data-cy="delete-btn"
-            color="inherit"
-            variant="outlined"
-            startIcon={<DeleteIcon />}
-            onClick={confirmDelete}
-          >
-            Delete
-          </Button>
-          {message && (
-            <Alert data-cy="flash-message" severity="info">
-              {message}
-            </Alert>
-          )}
-        </>
+    <>
+      {message && (
+        <Alert data-cy="flash-message" severity="info">
+          {message}
+        </Alert>
       )}
-      <Grid container spacing={2}>
-        <Grid item>
-          <Img
-            src="https://mui.com/static/images/cards/paella.jpg"
-            loading="lazy"
-          />
+      <Paper
+        sx={{ p: 2, margin: "auto", maxWidth: 500, flexGrow: 1, boxShadow: 3 }}
+      >
+        {showEditDelete && (
+          <>
+            <Button
+              sx={{ margin: 1, ml: 44, flexGrow: 1, boxShadow: 3 }}
+              data-cy="delete-btn"
+              color="inherit"
+              variant="outlined"
+              startIcon={<DeleteIcon />}
+              onClick={confirmDelete}
+            >
+              Delete
+            </Button>
+          </>
+        )}
+        <Grid container spacing={2}>
+          <Grid item>
+            <Img
+              src="https://mui.com/static/images/cards/paella.jpg"
+              loading="lazy"
+            />
+          </Grid>
+          <Grid item>
+            <Typography gutterBottom variant="h5" data-cy="recipe-name">
+              {recipe.name}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <IngredientsList ingredients={recipe.ingredients} />
+          </Grid>
+          <Grid item>
+            <Typography
+              gutterBottom
+              variant="body1"
+              data-cy="recipe-instructions"
+            >
+              {recipe.instructions}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography
+              data-cy="recipe-created_at"
+              variant="caption"
+              display="block"
+              gutterBottom
+            >
+              {recipe.created_at}
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Typography gutterBottom variant="h5" data-cy="recipe-name">
-            {recipe.name}
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <IngredientsList ingredients={recipe.ingredients} />
-        </Grid>
-        <Grid item>
-          <Typography
-            gutterBottom
-            variant="body1"
-            data-cy="recipe-instructions"
-          >
-            {recipe.instructions}
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Typography
-            data-cy="recipe-created_at"
-            variant="caption"
-            display="block"
-            gutterBottom
-          >
-            {recipe.created_at}
-          </Typography>
-        </Grid>
-      </Grid>
-    </Paper>
+      </Paper>
+    </>
   );
 };
 
