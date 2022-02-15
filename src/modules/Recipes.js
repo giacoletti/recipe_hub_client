@@ -59,7 +59,7 @@ const Recipes = {
       return error;
     }
   },
-  async create(comment) {
+  async create(id) {
     try {
       const headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
       const response = await api.post(
@@ -69,10 +69,14 @@ const Recipes = {
             body: "I really liked your focaccia"
           }
         },
-
-        { headers: headers }
+        {
+          headers: headers
+        }
       );
-    } catch {}
+      return response;
+    } catch (error) {
+      return error;
+    }
   },
   async update(recipe) {
     try {
