@@ -4,7 +4,7 @@ const Comments = {
   async create(id) {
     try {
       const headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-      const response = await api.post(
+      const { data } = await api.post(
         `/recipes/${id}/comments`,
         {
           comment: {
@@ -15,7 +15,7 @@ const Comments = {
           headers: headers
         }
       );
-      return response;
+      return data;
     } catch (error) {
       return error;
     }

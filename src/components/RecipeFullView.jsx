@@ -43,12 +43,13 @@ const RecipeFullView = () => {
     }
   };
 
-  const handleEnter = async (event) => {
+  const createComment = async (event) => {
     if (event.keyCode === 13) {
       const response = await Comments.create(comment);
+    } else {
+      console.log("no no");
     }
   };
-
   const handleChange = (event) => {
     setComment({
       ...comment,
@@ -161,7 +162,7 @@ const RecipeFullView = () => {
           variant="filled"
           fullWidth
           onChange={handleChange}
-          onKeyDown={handleEnter}
+          onKeyDown={createComment}
         />
         <Paper style={{ padding: "40px 20px" }}>
           <Grid container wrap="nowrap" spacing={2}>

@@ -76,7 +76,7 @@ describe("A visitor, by clicking a recipe card in the main view", () => {
   });
 });
 
-describe.only("post a comment when hitting the enter button", () => {
+describe("post a comment when hitting the enter button", () => {
   before(() => {
     cy.intercept("GET", "/api/recipes/**", {
       fixture: "recipesShowResponse.json"
@@ -84,7 +84,7 @@ describe.only("post a comment when hitting the enter button", () => {
     cy.visit("/recipes/12");
 
     cy.intercept("POST", "/api/recipes/**/comments", {
-      fixture: "recipesShowResponse.json"
+      fixture: "createCommentsResponse"
     });
     cy.get("[data-cy=comment-field]")
       .type("I really enjoyed this recipe!")
