@@ -65,7 +65,7 @@ describe("A visitor, by clicking a recipe card in the main view", () => {
         .type("I really enjoyed this recipe!")
         .type("{enter}");
     });
-    it("is expected to dispely a comment in the comment feed", () => {
+    it("is expected to display a comment in the comment feed", () => {
       cy.get("[data-cy=comment-feed").should(
         "contain.text",
         "I really enjoyed this recipe!"
