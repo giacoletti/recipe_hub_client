@@ -64,24 +64,26 @@ const RecipeFullView = () => {
           <>
             <Button
               data-cy="edit-recipe-btn"
+              onClick={() => navigate(`/recipes/${recipe.id}/edit`)}
               variant="contained"
               color="success"
+              size="small"
+              startIcon={<EditIcon />}
               sx={{
                 marginRight: "10px",
                 marginBottom: "10px"
               }}
-              startIcon={<EditIcon />}
-              onClick={() => navigate(`/recipes/${recipe.id}/edit`)}
             >
               Edit
             </Button>
             <Button
               data-cy="delete-btn"
+              onClick={confirmDelete}
               color="error"
+              size="small"
               variant="contained"
               startIcon={<DeleteIcon />}
               sx={{ marginBottom: "10px" }}
-              onClick={confirmDelete}
             >
               Delete
             </Button>
