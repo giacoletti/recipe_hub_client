@@ -84,12 +84,13 @@ describe("post a comment when hitting the enter button", () => {
     cy.visit("/recipes/12");
 
     cy.intercept("POST", "/api/recipes/**/comments", {
-      fixture: "createCommentsResponse"
+      fixture: "createCommentResponse"
     });
     cy.get("[data-cy=comment-field]")
       .type("I really enjoyed this recipe!")
       .type("{enter}");
   });
+  
   it("is expected to display a comment in the comment feed", () => {
     cy.get("[data-cy=comment-feed").should(
       "contain.text",
