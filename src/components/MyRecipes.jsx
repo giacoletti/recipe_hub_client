@@ -47,8 +47,9 @@ const MyRecipes = () => {
           data-cy="create-recipe"
           onClick={() => setShowForm(!showForm)}
           color="secondary"
+          variant="outlined"
         >
-          Write a recipe
+          Add recipe
         </Button>
       )}
       <Grid

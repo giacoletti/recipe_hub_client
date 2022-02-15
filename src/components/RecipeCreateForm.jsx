@@ -50,7 +50,8 @@ const RecipeCreateForm = () => {
       sx={{
         "& > :not(style)": { m: 2 },
         boxShadow: 3,
-        paddingRight: 4
+        paddingRight: 4,
+        marginTop: 2
       }}
       noValidate
       autoComplete="off"
