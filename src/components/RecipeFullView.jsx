@@ -145,6 +145,7 @@ const RecipeFullView = () => {
           size="normal"
           variant="filled"
           fullWidth
+          
         />
         <Paper style={{ padding: "40px 20px" }}>
           <Grid container wrap="nowrap" spacing={2}>
