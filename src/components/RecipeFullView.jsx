@@ -8,7 +8,8 @@ import {
   Button,
   Alert,
   TextField,
-  Box
+  Box,
+  Avatar
 } from "@mui/material";
 import Recipes from "../modules/Recipes";
 import IngredientsList from "./IngredientsList";
@@ -145,6 +146,13 @@ const RecipeFullView = () => {
           variant="filled"
           fullWidth
         />
+        <Paper style={{ padding: "40px 20px" }}>
+          <Grid container wrap="nowrap" spacing={2}>
+            <Grid justifyContent="left">
+              <p>Here is the comment</p>
+            </Grid>
+          </Grid>
+        </Paper>
       </Box>
     </>
   );
