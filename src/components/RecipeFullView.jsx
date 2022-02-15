@@ -17,6 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
+import Comments from "../modules/Comments";
 
 const Img = styled("img")({
   margin: "auto",
@@ -32,6 +33,7 @@ const RecipeFullView = () => {
   const [recipe, setRecipe] = useState({});
   const [showEditDelete, setShowEditDelete] = useState(false);
   const [message, setMessage] = useState();
+  const [comment, setComment] = useState();
 
   const fetchRecipe = async () => {
     const data = await Recipes.show(id);
@@ -39,6 +41,19 @@ const RecipeFullView = () => {
       currentUser?.uid === data.recipe?.owner && setShowEditDelete(true);
       setRecipe(data.recipe);
     }
+  };
+
+  const handleEnter = async (event) => {
+    if (event.keyCode === 13) {
+      const response = await Comments.create(comment);
+    }
+  };
+
+  const handleChange = (event) => {
+    setComment({
+      ...comment,
+      [event.target.name]: event.target.value
+    });
   };
 
   const deleteRecipe = async () => {
@@ -145,12 +160,13 @@ const RecipeFullView = () => {
           size="normal"
           variant="filled"
           fullWidth
-          
+          onChange={handleChange}
+          onKeyDown={handleEnter}
         />
         <Paper style={{ padding: "40px 20px" }}>
           <Grid container wrap="nowrap" spacing={2}>
-            <Grid justifyContent="left">
-              <p>Here is the comment</p>
+            <Grid data-cy="comment-feed" justifyContent="left">
+              <p>I really enjoyed this recipe!</p>
             </Grid>
           </Grid>
         </Paper>
