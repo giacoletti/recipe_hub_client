@@ -90,7 +90,7 @@ describe("post a comment when hitting the enter button", () => {
       .type("I really enjoyed this recipe!")
       .type("{enter}");
   });
-  
+
   it("is expected to display a comment in the comment feed", () => {
     cy.get("[data-cy=comment-feed").should(
       "contain.text",

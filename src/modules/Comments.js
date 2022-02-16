@@ -1,14 +1,14 @@
 import { api } from "./network";
 
 const Comments = {
-  async create(id) {
+  async create(id, comment) {
     try {
       const headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
       const { data } = await api.post(
         `/recipes/${id}/comments`,
         {
           comment: {
-            body: "I really liked your focaccia"
+            body: comment
           }
         },
         {
@@ -21,4 +21,4 @@ const Comments = {
     }
   }
 };
-export default Comments
+export default Comments;

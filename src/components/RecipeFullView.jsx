@@ -45,7 +45,8 @@ const RecipeFullView = () => {
 
   const createComment = async (event) => {
     if (event.keyCode === 13) {
-      const response = await Comments.create(comment);
+      const response = await Comments.create(id, comment);
+      return response;
     } else {
       console.log("no no");
     }
