@@ -129,7 +129,7 @@ const RecipeFullView = () => {
               loading="lazy"
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <Typography
               gutterBottom
               variant="body1"
@@ -138,7 +138,7 @@ const RecipeFullView = () => {
               {recipe.instructions}
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <Typography
               data-cy="recipe-created_at"
               variant="caption"
