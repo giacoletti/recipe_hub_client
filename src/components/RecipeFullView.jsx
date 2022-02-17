@@ -49,10 +49,20 @@ const RecipeFullView = () => {
     comment.index = index + 1;
     return (
       <Grid item xs={12} key={comment.index}>
-        <Typography data-cy={`comment-user-${comment.index}`} variant="h6" gutterBottom component="div">
+        <Typography
+          data-cy={`comment-user-${comment.index}`}
+          variant="h6"
+          gutterBottom
+          component="div"
+        >
           {comment.user}
         </Typography>
-        <Typography data-cy={`comment-body-${comment.index}`} variant="body1" gutterBottom component="div">
+        <Typography
+          data-cy={`comment-body-${comment.index}`}
+          variant="body1"
+          gutterBottom
+          component="div"
+        >
           {comment.body}
         </Typography>
       </Grid>
@@ -61,7 +71,7 @@ const RecipeFullView = () => {
 
   const createComment = async (event) => {
     const response = await Comments.create(id, comment);
-    if(response.comment) {
+    if (response.comment) {
       let newComment = { user: currentUser.name, body: response.comment?.body }
       setCommentsList([newComment, ...commentsList]);
     }
@@ -94,7 +104,7 @@ const RecipeFullView = () => {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       {message && (
         <Alert data-cy="flash-message" severity="info">
           {message}
@@ -104,7 +114,7 @@ const RecipeFullView = () => {
         sx={{ p: 2, margin: "auto", maxWidth: 800, flexGrow: 1, boxShadow: 3 }}
       >
         {showEditDelete && (
-          <>
+          <React.Fragment>
             <Button
               data-cy="edit-recipe-btn"
               onClick={() => navigate(`/recipes/${recipe.id}/edit`)}
@@ -130,7 +140,7 @@ const RecipeFullView = () => {
             >
               Delete
             </Button>
-          </>
+          </React.Fragment>
         )}
         <Grid container spacing={2}>
           <Grid item xs={6}>
@@ -172,26 +182,30 @@ const RecipeFullView = () => {
         noValidate
         autoComplete="off"
       >
-        <TextField
-          data-cy="comment-field"
-          name="comment"
-          size="normal"
-          variant="outlined"
-          fullWidth
-          multiline
-          placeholder="Leave your comment here ..."
-          onChange={handleChange}
-        />
-        <Button onClick={createComment} data-cy="post-comment-btn">
-          Post comment
-        </Button>
+        {currentUser && (
+          <React.Fragment>
+            <TextField
+              data-cy="comment-field"
+              name="comment"
+              size="normal"
+              variant="outlined"
+              fullWidth
+              multiline
+              placeholder="Leave your comment here ..."
+              onChange={handleChange}
+            />
+            <Button onClick={createComment} data-cy="post-comment-btn">
+              Post comment
+            </Button>
+          </React.Fragment>
+        )}
         <Paper style={{ padding: "40px 20px" }}>
-          <Grid container data-cy="comment-feed" spacing={2}>    
+          <Grid container data-cy="comment-feed" spacing={2}>
             {commentsFeed}
           </Grid>
         </Paper>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 
