@@ -12,7 +12,7 @@ describe("User", () => {
     });
     cy.visitAndAuthenticate();
     cy.get("[data-cy=recipe-card-1]").click();
-    cy.get("[data-cy=comment-field]").type("Loved this recipe");
+    cy.get("[data-cy=comment-field]").type("Awesome recipe");
     cy.get("[data-cy=post-comment-btn]").click();
   });
 
@@ -20,6 +20,6 @@ describe("User", () => {
     cy.get("[data-cy=comment-feed]")
       .children()
       .first()
-      .should("contain", "Loved this recipe");
+      .should("contain", "Awesome recipe");
   });
 });

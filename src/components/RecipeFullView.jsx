@@ -34,23 +34,30 @@ const RecipeFullView = () => {
   const [showEditDelete, setShowEditDelete] = useState(false);
   const [message, setMessage] = useState();
   const [comment, setComment] = useState();
+  const [commentsList, setCommentsList] = useState([]);
 
   const fetchRecipe = async () => {
     const data = await Recipes.show(id);
     if (data.recipe) {
       currentUser?.uid === data.recipe?.owner && setShowEditDelete(true);
       setRecipe(data.recipe);
+      setCommentsList(data.recipe.comments);
     }
   };
 
+  const commentsFeed = commentsList.map((comment) => {
+    return (
+      <Typography variant="body1" gutterBottom component="div">
+        {comment.body}
+      </Typography>
+    );
+  });
+
   const createComment = async (event) => {
-    if (event.keyCode === 13) {
-      const response = await Comments.create(id, comment);
-      return response;
-    } else {
-      console.log("no no");
-    }
+    const response = await Comments.create(id, comment);
+    setCommentsList([response.comment, ...commentsList]);
   };
+
   const handleChange = (event) => {
     setComment({
       ...comment,
@@ -160,15 +167,19 @@ const RecipeFullView = () => {
           data-cy="comment-field"
           name="comment"
           size="normal"
-          variant="filled"
+          variant="outlined"
           fullWidth
+          multiline
+          placeholder="Leave your comment here ..."
           onChange={handleChange}
-          onKeyDown={createComment}
         />
+        <Button onClick={createComment} data-cy="post-comment-btn">
+          Post comment
+        </Button>
         <Paper style={{ padding: "40px 20px" }}>
           <Grid container wrap="nowrap" spacing={2}>
             <Grid data-cy="comment-feed" justifyContent="left">
-              <p>I really enjoyed this recipe!</p>
+              {commentsFeed}
             </Grid>
           </Grid>
         </Paper>
