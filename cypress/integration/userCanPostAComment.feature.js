@@ -19,7 +19,9 @@ describe("User", () => {
   it("is expected to display posted comment in the comment feed", () => {
     cy.get("[data-cy=comment-feed]")
       .children()
-      .first()
-      .should("contain", "Awesome recipe");
+      .first().within(() => {
+        cy.get("[data-cy=comment-user-1]").should("contain", "John Skoglund");
+        cy.get("[data-cy=comment-body-1]").should("contain", "Awesome recipe");
+      });
   });
 });

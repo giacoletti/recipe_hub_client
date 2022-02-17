@@ -45,17 +45,26 @@ const RecipeFullView = () => {
     }
   };
 
-  const commentsFeed = commentsList.map((comment) => {
+  const commentsFeed = commentsList.map((comment, index) => {
+    comment.index = index + 1;
     return (
-      <Typography variant="body1" gutterBottom component="div">
-        {comment.body}
-      </Typography>
+      <Grid item xs={12} key={comment.index}>
+        <Typography data-cy={`comment-user-${comment.index}`} variant="h6" gutterBottom component="div">
+          {comment.user}
+        </Typography>
+        <Typography data-cy={`comment-body-${comment.index}`} variant="body1" gutterBottom component="div">
+          {comment.body}
+        </Typography>
+      </Grid>
     );
   });
 
   const createComment = async (event) => {
     const response = await Comments.create(id, comment);
-    setCommentsList([response.comment, ...commentsList]);
+    if(response.comment) {
+      let newComment = { user: currentUser.name, body: response.comment?.body }
+      setCommentsList([newComment, ...commentsList]);
+    }
   };
 
   const handleChange = (event) => {
@@ -177,10 +186,8 @@ const RecipeFullView = () => {
           Post comment
         </Button>
         <Paper style={{ padding: "40px 20px" }}>
-          <Grid container wrap="nowrap" spacing={2}>
-            <Grid data-cy="comment-feed" justifyContent="left">
-              {commentsFeed}
-            </Grid>
+          <Grid container data-cy="comment-feed" spacing={2}>    
+            {commentsFeed}
           </Grid>
         </Paper>
       </Box>
