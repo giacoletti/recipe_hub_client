@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Recipes from "../modules/Recipes";
 import {
   Card,
@@ -17,12 +18,17 @@ import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 
 const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const forkRecipe = async () => {
     const params = { id: recipe.id, fork: true };
     const response = await Recipes.create(params);
     if (response.forked) {
       navigate("my-recipes");
+      dispatch({ type: "SET_FLASH_MESSAGE", payload: response.message });
+      setTimeout(() => {
+        dispatch({ type: "SET_FLASH_MESSAGE", payload: "" });
+      }, 3500);
     }
   };
 

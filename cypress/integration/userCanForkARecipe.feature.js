@@ -24,7 +24,16 @@ describe('A user can click on "Fork" button on a Recipe in the main view', () =>
 
   it('is expected to display forked recipe in "My Recipes" view', () => {
     cy.get("[data-cy=recipe-card-1]").within(() => {
-      cy.get("[data-cy=recipe-name-1]").should("contain.text", "Fried rice with kimchi");
+      cy.get("[data-cy=recipe-name-1]")
+        .should("contain.text", "Fried rice with kimchi");
     });
+  });
+
+  it("is expected to display flash message", () => {
+    cy.get("[data-cy=flash-message]")
+      .should(
+        "contain.text",
+        "The recipe was successfully forked and saved in your collection"
+      );
   });
 });
