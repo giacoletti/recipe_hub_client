@@ -10,6 +10,7 @@ import {
   CardActionArea,
   CardActions,
   IconButton,
+  Tooltip,
   Typography,
   Avatar,
   colors
@@ -62,12 +63,14 @@ const RecipeCard = ({ recipe }) => {
       </CardActionArea>
       {currentUser && (
         <CardActions disableSpacing>
-          <IconButton
-            data-cy={`recipe-fork-btn-${recipe.index}`}
-            onClick={forkRecipe}
-          >
-            <DinnerDiningIcon />
-          </IconButton>
+          <Tooltip title="Fork recipe!">
+            <IconButton
+              data-cy={`recipe-fork-btn-${recipe.index}`}
+              onClick={forkRecipe}
+            >
+              <DinnerDiningIcon />
+            </IconButton>
+          </Tooltip>
         </CardActions>
       )}
     </Card>
