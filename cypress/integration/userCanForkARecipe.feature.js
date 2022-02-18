@@ -1,6 +1,6 @@
 describe('A user can click on "Fork" button on a Recipe in the main view', () => {
   before(() => {
-    cy.intercept("GET", "/api/recipes", {
+    cy.intercept("GET", "/api/recipes**", {
       fixture: "forkedRecipeMyRecipeResponse"
     });
     cy.intercept("GET", "/api/recipes", {
