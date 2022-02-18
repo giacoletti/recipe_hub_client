@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Recipes from "../modules/Recipes";
 import {
   Card,
@@ -19,6 +19,7 @@ import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state);
 
   const forkRecipe = async () => {
     const params = { id: recipe.id, fork: true };
@@ -59,14 +60,16 @@ const RecipeCard = ({ recipe }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions disableSpacing>
-        <IconButton
-          data-cy={`recipe-fork-btn-${recipe.index}`}
-          onClick={forkRecipe}
-        >
-          <DinnerDiningIcon />
-        </IconButton>
-      </CardActions>
+      {currentUser && (
+        <CardActions disableSpacing>
+          <IconButton
+            data-cy={`recipe-fork-btn-${recipe.index}`}
+            onClick={forkRecipe}
+          >
+            <DinnerDiningIcon />
+          </IconButton>
+        </CardActions>
+      )}
     </Card>
   );
 };
