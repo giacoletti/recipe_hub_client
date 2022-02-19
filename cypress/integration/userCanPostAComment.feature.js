@@ -13,7 +13,6 @@ describe("User", () => {
     cy.visitAndAuthenticate();
     cy.get("[data-cy=recipe-card-1]").click();
     cy.get("[data-cy=comment-field]").type("Awesome recipe");
-    cy.get("[data-cy=post-comment-btn]").click();
   });
 
   describe("posts a comment", () => {
@@ -21,7 +20,9 @@ describe("User", () => {
       cy.intercept("GET", "/api/recipes/**", {
         fixture: "recipesShowWithNewCommentsResponse"
       });
+      cy.get("[data-cy=post-comment-btn]").click();
     });
+
     it("is expected to display posted comment in the comment feed", () => {
       cy.get("[data-cy=comment-feed]")
         .children()
