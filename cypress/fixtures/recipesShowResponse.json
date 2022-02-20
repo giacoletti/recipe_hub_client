@@ -4,44 +4,20 @@
     "name": "Fried rice with kimchi",
     "instructions": "1. On medium high heat preheat a pan/wok and once heated, add the cooking oil and spread it well with a spatula. 2. Then put it in the oven and wait for an eternity. 3. Put vanilla on top of it.",
     "ingredients": [
-      {
-        "amount": 100.0,
-        "unit": "grams",
-        "name": "sugar"
-      },
-      {
-        "amount": 400.0,
-        "unit": "ml",
-        "name": "milk"
-      },
-      {
-        "amount": 150.0,
-        "unit": "grams",
-        "name": "vanilla"
-      },
-      {
-        "amount": 1000.0,
-        "unit": "grams",
-        "name": "water"
-      },
-      {
-        "amount": 800.0,
-        "unit": "grams",
-        "name": "weat"
-      }
+      { "amount": 100.0, "unit": "grams", "name": "sugar" },
+      { "amount": 400.0, "unit": "ml", "name": "milk" },
+      { "amount": 150.0, "unit": "grams", "name": "vanilla" },
+      { "amount": 1000.0, "unit": "grams", "name": "water" },
+      { "amount": 800.0, "unit": "grams", "name": "weat" }
     ],
     "created_at": "February 07, 2022 16:38",
+    "updated_at": "February 07, 2022 16:38",
     "owner": "johnskoglund@test.com",
     "comments": [
-      {
-        "user": "Mathias Ljungholm",
-        "body": "I loved your focaccia"
-      },
-      {
-        "user": "Love Bellinder",
-        "body": "I loved your focaccia, it was wonderful"
-      }
+      { "body": "Wow, that's so cool", "user": "Lisa Bode" },
+      { "body": "I will make this for sure!", "user": "Aunt wife" }
     ],
-    "forks_count": 0
+    "forks_count": 0,
+    "image": "/home/defycab/recipe_hub_api/tmp/storage/7t/9j/7t9jl5g39y0qljyx89x48tpy20gc"
   }
 }
