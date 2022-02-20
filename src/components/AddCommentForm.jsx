@@ -16,7 +16,7 @@ const AddCommentForm = ({ onCommentAdded }) => {
     });
   };
 
-  const createComment = async (event) => {
+  const createComment = async () => {
     const response = await Comments.create(id, comment);
     if (response.comment) {
       onCommentAdded();
