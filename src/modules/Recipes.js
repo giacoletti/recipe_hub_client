@@ -59,7 +59,6 @@ const Recipes = {
       return error;
     }
   },
-  
   async update(recipe) {
     try {
       const headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
