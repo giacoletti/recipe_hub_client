@@ -12,7 +12,7 @@ const Recipes = {
         return data;
       } else {
         const { data } = await api.get("/recipes");
-        return data.recipes;
+        return data;
       }
     } catch (error) {
       return error;
