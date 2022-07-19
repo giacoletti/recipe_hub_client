@@ -7,7 +7,7 @@ Social web application platform built to share recipes on the Internet.
 
 ## Deployment
 
-[Recipe Hub](https://recipe-hub-ca.netlify.app/)
+[Recipe Hub](https://recipehubca.netlify.app/)
 
 ## Dependencies
 
